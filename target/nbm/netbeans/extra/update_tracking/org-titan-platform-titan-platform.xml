@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.titan.platform.titan.platform">
+    <module_version install_time="1285267613855" last="true" origin="installer" specification_version="1.0">
+        <file crc="2820437721" name="config/Modules/org-titan-platform-titan-platform.xml"/>
+        <file crc="3613942220" name="modules/org-titan-platform-titan-platform.jar"/>
+    </module_version>
+</module>
