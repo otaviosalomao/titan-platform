@@ -1,17 +1,31 @@
 package org.titan.platform.projectType;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.netbeans.api.project.Project;
 import org.netbeans.spi.project.ProjectState;
 import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
 
 public class TitanPlatformProjectFactoryTest {
 
+    private File file;
+
+    @Before
+    public void setup() throws URISyntaxException{
+        URL url = this.getClass().getResource("/titan-template/");
+        file = new File(url.toURI());
+
+    }
+
     @Test
-    public void testIsProject() {
-       
-        FileObject fo = null;
+    public void testIsProject() throws URISyntaxException {
+        FileObject fo = FileUtil.toFileObject(FileUtil.normalizeFile(file));
+
         TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
         boolean expResult = false;
         boolean result = instance.isProject(fo);

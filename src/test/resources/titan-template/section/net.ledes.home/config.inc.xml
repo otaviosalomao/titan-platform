@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<action-mapping>
+	<action
+		name="home"
+		label="Monitor do Sistema"
+		default="true">
+		<menu function="search" image="create.png" label="Adicionar Feed RSS" />
+		<menu action="profile" image="personal.png" />
+	</action>
+	
+	<action
+		name="profile"
+		label="Dados Pessoais">
+		<menu function="search" image="permission.png" label="Mudar Senha" />
+		<menu action="personal" image="edit.png" />
+	</action>
+	
+	<action
+		name="personal"
+		label="Editar Dados Pessoais"
+		description="">
+		<menu function="search" image="permission.png" label="Mudar Senha" />
+	</action>
+</action-mapping>
