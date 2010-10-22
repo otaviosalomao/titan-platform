@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <titan-configuration
-	name=""
+	name="template-name"
 	description=""
 	url=""
 	e-mail=""
