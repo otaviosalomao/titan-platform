@@ -25,15 +25,16 @@ public class TitanPlatformProjectFactory implements org.netbeans.spi.project.Pro
 
 
     private static final String PROJECT_DIR = "nbproject";
+    private static final String CONFIG_DIR = "configure";
+
 
     @Override
     public boolean isProject(FileObject fo)
     {
-        if(fo.getFileObject(PROJECT_DIR) != null)
+        if(fo.getFileObject(CONFIG_DIR) != null)
         {
-            FileObject xml = fo.getFileObject(PROJECT_DIR);
-            return xml.getFileObject("project.xml") != null;
-           //TODO asda
+            FileObject xml = fo.getFileObject(CONFIG_DIR);
+            return xml.getFileObject("titan.xml") != null;
         }
 
         return false;

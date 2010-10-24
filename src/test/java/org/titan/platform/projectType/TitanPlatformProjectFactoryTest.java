@@ -1,45 +1,81 @@
 package org.titan.platform.projectType;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.netbeans.api.project.Project;
-import org.netbeans.spi.project.ProjectState;
 import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
 
 public class TitanPlatformProjectFactoryTest {
 
-    @Test
-    public void testIsProject() {
-       
-        FileObject fo = null;
-        TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
-        boolean expResult = false;
-        boolean result = instance.isProject(fo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    private File file;
+    TitanPlatformProject project;
+
+    @Before
+    public void setup() throws URISyntaxException {
+        URL url = this.getClass().getResource("/titan-template/");
+        file = new File(url.toURI());
+        project = new TitanPlatformProject(FileUtil.toFileObject(file), null);
+
     }
 
-    /**
-     * Test of loadProject method, of class TitanPlatformProjectFactory.
-     */
+    @Test
+    public void testIsProject() throws URISyntaxException {
+        FileObject fo = FileUtil.toFileObject(file);
+        TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
+        assertTrue("Should validate project folder", instance.isProject(fo));
+    }
+
+    @Test
+    public void testIsNotProjectWithConfigDir() throws URISyntaxException {
+
+        URL url = this.getClass().getResource("/fake/");
+        file = new File(url.toURI());
+        FileObject fo = FileUtil.toFileObject(file);
+        TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
+        assertFalse("Should not validate project folder", instance.isProject(fo));
+    }
+
+    @Test
+    public void testIsNotProject() throws URISyntaxException {
+
+        URL url = this.getClass().getResource("/fake2/");
+        file = new File(url.toURI());
+        FileObject fo = FileUtil.toFileObject(file);
+        TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
+        assertFalse("Should not validate project folder", instance.isProject(fo));
+    }
+
     @Test
     public void testLoadProject() throws Exception {
-        System.out.println("loadProject");
-        FileObject dir = null;
-        ProjectState state = null;
+        FileObject dir = FileUtil.toFileObject(file);
         TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
-        Project expResult = null;
-        Project result = instance.loadProject(dir, state);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Project loaded = instance.loadProject(dir, null);
+        assertEquals(project, loaded);
+
+    }
+
+    @Test
+    public void testLoadInexistentProject() throws Exception {
+
+        URL url = this.getClass().getResource("/fake2/");
+        file = new File(url.toURI());
+        FileObject dir = FileUtil.toFileObject(file);
+        TitanPlatformProjectFactory instance = new TitanPlatformProjectFactory();
+        Project loaded = instance.loadProject(dir, null);
+        assertFalse(project.equals(loaded));
+
     }
 
     /**
      * Test of saveProject method, of class TitanPlatformProjectFactory.
      */
-    @Test
+    @Ignore
     public void testSaveProject() throws Exception {
         System.out.println("saveProject");
         Project project = null;
@@ -48,5 +84,4 @@ public class TitanPlatformProjectFactoryTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
 }
