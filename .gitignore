@@ -1,2 +1,4 @@
 target
 titan-template/cache
+*
+!.gitignore
