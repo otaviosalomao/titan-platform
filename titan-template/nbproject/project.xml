@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.titan.framework</type>
+    <configuration>
+        <data xmlns="http://www.wiki.ledes.net/titan-platform/1">
+            <name>titan-template</name>
+        </data>
+    </configuration>
+</project>
