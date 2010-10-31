@@ -9,12 +9,15 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
+import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.support.ant.AntBasedProjectRegistration;
 import org.netbeans.spi.project.support.ant.AntProjectHelper;
+import org.netbeans.spi.project.ui.support.DefaultProjectOperations;
 import org.openide.filesystems.FileObject;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
+import org.titan.platform.operations.DeleteOperation;
 
 @AntBasedProjectRegistration(type = TitanPlataformProjectType.TYPE,
 iconResource = TitanPlataformProjectType.ICON_RESOURCE_PATH,
@@ -30,12 +33,50 @@ public class TitanPlatformProject implements Project {
 
     @Override
     public FileObject getProjectDirectory() {
-       return helper.getProjectDirectory();
+        return helper.getProjectDirectory();
     }
 
     @Override
     public Lookup getLookup() {
-        return Lookups.fixed(new Object[]{new Info()});
+        Object[] params = new Object[]{
+            new Info(),
+            new ActionProviderImpl(),
+            new DeleteOperation()
+        };
+        return Lookups.fixed(params);
+    }
+
+    private final class ActionProviderImpl implements ActionProvider {
+
+        private String[] supported = new String[]{
+            ActionProvider.COMMAND_DELETE,
+            ActionProvider.COMMAND_COPY,};
+
+        @Override
+        public String[] getSupportedActions() {
+            return supported;
+        }
+
+        @Override
+        public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
+            if (string.equalsIgnoreCase(ActionProvider.COMMAND_DELETE)) {
+                DefaultProjectOperations.performDefaultDeleteOperation(TitanPlatformProject.this);
+            }
+            if (string.equalsIgnoreCase(ActionProvider.COMMAND_COPY)) {
+                DefaultProjectOperations.performDefaultCopyOperation(TitanPlatformProject.this);
+            }
+        }
+
+        @Override
+        public boolean isActionEnabled(String command, Lookup lookup) throws IllegalArgumentException {
+            if ((command.equals(ActionProvider.COMMAND_DELETE))) {
+                return true;
+            } else if ((command.equals(ActionProvider.COMMAND_COPY))) {
+                return true;
+            } else {
+                throw new IllegalArgumentException(command);
+            }
+        }
     }
 
     private final class Info implements ProjectInformation {
