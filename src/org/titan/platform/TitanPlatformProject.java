@@ -62,9 +62,6 @@ public class TitanPlatformProject implements Project {
             if (string.equalsIgnoreCase(ActionProvider.COMMAND_DELETE)) {
                 DefaultProjectOperations.performDefaultDeleteOperation(TitanPlatformProject.this);
             }
-            if (string.equalsIgnoreCase(ActionProvider.COMMAND_COPY)) {
-                DefaultProjectOperations.performDefaultCopyOperation(TitanPlatformProject.this);
-            }
         }
 
         @Override
