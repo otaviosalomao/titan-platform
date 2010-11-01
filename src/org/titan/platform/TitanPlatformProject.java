@@ -17,6 +17,7 @@ import org.openide.filesystems.FileObject;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
+import org.titan.platform.operations.CopyOperation;
 import org.titan.platform.operations.DeleteOperation;
 
 @AntBasedProjectRegistration(type = TitanPlataformProjectType.TYPE,
@@ -40,9 +41,11 @@ public class TitanPlatformProject implements Project {
     public Lookup getLookup() {
         Object[] params = new Object[]{
             new Info(),
-            new ActionProviderImpl(),
-            new DeleteOperation()
-        };
+            new ActionProviderImpl(), //Provides standard actions like Build and Clean
+            new DeleteOperation(),
+            new CopyOperation(this),
+            new Info(), //Project information implementation
+            new TitanPlatformLogicalView(this),};
         return Lookups.fixed(params);
     }
 
@@ -61,6 +64,42 @@ public class TitanPlatformProject implements Project {
         public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
             if (string.equalsIgnoreCase(ActionProvider.COMMAND_DELETE)) {
                 DefaultProjectOperations.performDefaultDeleteOperation(TitanPlatformProject.this);
+            }
+            if (string.equalsIgnoreCase(ActionProvider.COMMAND_COPY)) {
+                DefaultProjectOperations.performDefaultCopyOperation(TitanPlatformProject.this);
+            }
+        }
+
+        @Override
+        public boolean isActionEnabled(String command, Lookup lookup) throws IllegalArgumentException {
+            if ((command.equals(ActionProvider.COMMAND_DELETE))) {
+                return true;
+            } else if ((command.equals(ActionProvider.COMMAND_COPY))) {
+                return true;
+            } else {
+                throw new IllegalArgumentException(command);
+            }
+        }
+    }
+
+    private final class DemoActionProvider implements ActionProvider {
+
+        private String[] supported = new String[]{
+            ActionProvider.COMMAND_DELETE,
+            ActionProvider.COMMAND_COPY,};
+
+        @Override
+        public String[] getSupportedActions() {
+            return supported;
+        }
+
+        @Override
+        public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
+            if (string.equals(ActionProvider.COMMAND_DELETE)) {
+                DefaultProjectOperations.performDefaultDeleteOperation(TitanPlatformProject.this);
+            }
+            if (string.equals(ActionProvider.COMMAND_COPY)) {
+                DefaultProjectOperations.performDefaultCopyOperation(TitanPlatformProject.this);
             }
         }
 
