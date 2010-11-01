@@ -8,10 +8,12 @@ package org.titan.platform.operations;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 import org.netbeans.api.project.Project;
 import org.netbeans.spi.project.CopyOperationImplementation;
 import org.openide.filesystems.FileObject;
+
 
 /**
  *
