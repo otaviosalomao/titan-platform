@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Templates">
+        <folder name="Project">
+            <folder name="Titan">
+                <file name="TitanFrameworkProject.zip" url="TitanFrameworkProject.zip">
+                    <attr name="displayName" bundlevalue="org.titan.platform.Bundle#Templates/Project/Titan/TitanFrameworkProject.zip"/>
+                    <attr name="instantiatingIterator" methodvalue="org.titan.platform.TitanFrameworkWizardIterator.createIterator"/>
+                    <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/titan/platform/TitanFrameworkDescription.html"/>
+                    <attr name="template" boolvalue="true"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
