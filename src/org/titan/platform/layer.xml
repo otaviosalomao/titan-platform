@@ -8,6 +8,7 @@
                     <attr name="displayName" bundlevalue="org.titan.platform.Bundle#Templates/Project/Titan/TitanFrameworkProject.zip"/>
                     <attr name="instantiatingIterator" methodvalue="org.titan.platform.TitanFrameworkWizardIterator.createIterator"/>
                     <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/titan/platform/TitanFrameworkDescription.html"/>
+                    <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/resources/titan.ico"/>
                     <attr name="template" boolvalue="true"/>
                 </file>
             </folder>
