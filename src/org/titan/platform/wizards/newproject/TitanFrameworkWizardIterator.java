@@ -50,7 +50,8 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
     private WizardDescriptor.Panel[] createPanels() {
         return new WizardDescriptor.Panel[]{
                     new LocationWizardPanel(),
-                    new ConfigurationWizardPanel()
+                    new ConfigurationWizardPanel(),
+                    new DatabaseWizardPanel()
         };
     }
 

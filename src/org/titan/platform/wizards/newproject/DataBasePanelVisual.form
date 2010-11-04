@@ -16,178 +16,123 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
-                      <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="urlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="descLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="cacheLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="loginUrlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="descField" alignment="0" pref="388" max="32767" attributes="0"/>
-                          <Component id="urlField" alignment="0" pref="388" max="32767" attributes="0"/>
-                          <Component id="emailField" alignment="0" pref="388" max="32767" attributes="0"/>
-                          <Component id="loginUrlField" alignment="0" pref="388" max="32767" attributes="0"/>
-                          <Component id="nameField" alignment="0" pref="388" max="32767" attributes="1"/>
-                          <Component id="cacheField" alignment="0" pref="388" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="sgbdLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="schemaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="userLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="HostLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="portLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-              <Component id="findButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="passwordField" pref="232" max="32767" attributes="2"/>
+                  <Component id="portField" alignment="0" pref="232" max="32767" attributes="2"/>
+                  <Component id="userField" alignment="0" pref="232" max="32767" attributes="2"/>
+                  <Component id="schemaField" alignment="0" pref="232" max="32767" attributes="2"/>
+                  <Component id="hostField" alignment="0" pref="232" max="32767" attributes="2"/>
+                  <Component id="nameField" alignment="0" pref="232" max="32767" attributes="2"/>
+                  <Component id="sgdbField" alignment="0" pref="232" max="32767" attributes="3"/>
+              </Group>
+              <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="findButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nameField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="descField" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="65" pref="65" max="65" attributes="0"/>
-                                  <Component id="emailField" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="urlField" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="loginUrlField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="cacheField" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="descLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="21" max="32767" attributes="0"/>
-                          <Component id="urlLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="emailLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="loginUrlLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="cacheLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="sgbdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sgdbField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="HostLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hostField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="debugModeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="useChatCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="userLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="userField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="portLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="portField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="schemaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="schemaField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="58" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="sgbdLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sgdb:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="HostLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Host:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="nameLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome:"/>
+        <Property name="text" type="java.lang.String" value="Name:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="descLabel">
+    <Component class="javax.swing.JLabel" name="userLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
+        <Property name="text" type="java.lang.String" value="User:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="urlLabel">
+    <Component class="javax.swing.JLabel" name="portLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Url:"/>
+        <Property name="text" type="java.lang.String" value="Port:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="emailLabel">
+    <Component class="javax.swing.JLabel" name="passwordLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Email:"/>
+        <Property name="text" type="java.lang.String" value="Password:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="loginUrlLabel">
+    <Component class="javax.swing.JLabel" name="schemaLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Login Url:"/>
+        <Property name="text" type="java.lang.String" value="Schema:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="cacheLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Caminho Cache:"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="sgdbField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="hostField">
     </Component>
     <Component class="javax.swing.JTextField" name="nameField">
     </Component>
-    <Component class="javax.swing.JTextField" name="descField">
+    <Component class="javax.swing.JTextField" name="userField">
     </Component>
-    <Component class="javax.swing.JTextField" name="urlField">
+    <Component class="javax.swing.JTextField" name="portField">
     </Component>
-    <Component class="javax.swing.JTextField" name="emailField">
+    <Component class="javax.swing.JTextField" name="schemaField">
     </Component>
-    <Component class="javax.swing.JTextField" name="cacheField">
-    </Component>
-    <Component class="javax.swing.JTextField" name="loginUrlField">
-    </Component>
-    <Component class="javax.swing.JButton" name="findButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Procurar..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="allSectionsCheck">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="all-sections"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allSectionsCheckActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="debugModeCheck">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="debug-mode"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="useChatCheck">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="use-chat"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="useChatCheckActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="onlyFirefoxCheck">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="only-firefox"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onlyFirefoxCheckActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="passwordField">
     </Component>
   </SubComponents>
 </Form>

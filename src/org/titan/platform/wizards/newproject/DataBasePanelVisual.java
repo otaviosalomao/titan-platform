@@ -28,174 +28,110 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        sgbdLabel = new javax.swing.JLabel();
+        HostLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
-        descLabel = new javax.swing.JLabel();
-        urlLabel = new javax.swing.JLabel();
-        emailLabel = new javax.swing.JLabel();
-        loginUrlLabel = new javax.swing.JLabel();
-        cacheLabel = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        portLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        schemaLabel = new javax.swing.JLabel();
+        sgdbField = new javax.swing.JTextField();
+        hostField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
-        descField = new javax.swing.JTextField();
-        urlField = new javax.swing.JTextField();
-        emailField = new javax.swing.JTextField();
-        cacheField = new javax.swing.JTextField();
-        loginUrlField = new javax.swing.JTextField();
-        findButton = new javax.swing.JButton();
-        allSectionsCheck = new javax.swing.JCheckBox();
-        debugModeCheck = new javax.swing.JCheckBox();
-        useChatCheck = new javax.swing.JCheckBox();
-        onlyFirefoxCheck = new javax.swing.JCheckBox();
+        userField = new javax.swing.JTextField();
+        portField = new javax.swing.JTextField();
+        schemaField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JTextField();
 
-        org.openide.awt.Mnemonics.setLocalizedText(nameLabel, "Nome:");
+        org.openide.awt.Mnemonics.setLocalizedText(sgbdLabel, "Sgdb:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(descLabel, "Descrição:");
+        org.openide.awt.Mnemonics.setLocalizedText(HostLabel, "Host:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(urlLabel, "Url:");
+        org.openide.awt.Mnemonics.setLocalizedText(nameLabel, "Name:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(emailLabel, "Email:");
+        org.openide.awt.Mnemonics.setLocalizedText(userLabel, "User:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(loginUrlLabel, "Login Url:");
+        org.openide.awt.Mnemonics.setLocalizedText(portLabel, "Port:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(cacheLabel, "Caminho Cache:");
+        org.openide.awt.Mnemonics.setLocalizedText(passwordLabel, "Password:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(findButton, "Procurar...");
-
-        org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, "all-sections");
-        allSectionsCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allSectionsCheckActionPerformed(evt);
-            }
-        });
-
-        org.openide.awt.Mnemonics.setLocalizedText(debugModeCheck, "debug-mode");
-
-        org.openide.awt.Mnemonics.setLocalizedText(useChatCheck, "use-chat");
-        useChatCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                useChatCheckActionPerformed(evt);
-            }
-        });
-
-        org.openide.awt.Mnemonics.setLocalizedText(onlyFirefoxCheck, "only-firefox");
-        onlyFirefoxCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onlyFirefoxCheckActionPerformed(evt);
-            }
-        });
+        org.openide.awt.Mnemonics.setLocalizedText(schemaLabel, "Schema:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(debugModeCheck)
-                        .addGap(29, 29, 29)
-                        .addComponent(useChatCheck)
-                        .addGap(39, 39, 39)
-                        .addComponent(allSectionsCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(onlyFirefoxCheck))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(urlLabel)
-                            .addComponent(descLabel)
-                            .addComponent(nameLabel)
-                            .addComponent(cacheLabel)
-                            .addComponent(emailLabel)
-                            .addComponent(loginUrlLabel))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                            .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                            .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                            .addComponent(cacheField, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))))
-                .addGap(70, 70, 70)
-                .addComponent(findButton)
-                .addGap(117, 117, 117))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sgbdLabel)
+                    .addComponent(schemaLabel)
+                    .addComponent(passwordLabel)
+                    .addComponent(userLabel)
+                    .addComponent(nameLabel)
+                    .addComponent(HostLabel)
+                    .addComponent(portLabel))
+                .addGap(106, 106, 106)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(portField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(userField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(schemaField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(hostField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(sgdbField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                .addGap(311, 311, 311))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(findButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(descField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(65, 65, 65)
-                                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(urlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(80, 80, 80)))
-                            .addComponent(loginUrlField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(38, 38, 38)
-                            .addComponent(cacheField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addComponent(nameLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(descLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                            .addComponent(urlLabel)
-                            .addGap(29, 29, 29)
-                            .addComponent(emailLabel)
-                            .addGap(29, 29, 29)
-                            .addComponent(loginUrlLabel)
-                            .addGap(42, 42, 42)
-                            .addComponent(cacheLabel))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sgbdLabel)
+                    .addComponent(sgdbField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HostLabel)
+                    .addComponent(hostField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(debugModeCheck)
-                    .addComponent(allSectionsCheck)
-                    .addComponent(useChatCheck)
-                    .addComponent(onlyFirefoxCheck))
-                .addGap(19, 19, 19))
+                    .addComponent(userLabel)
+                    .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(portLabel)
+                    .addComponent(portField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(schemaLabel)
+                    .addComponent(schemaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void allSectionsCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allSectionsCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_allSectionsCheckActionPerformed
-
-    private void useChatCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useChatCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_useChatCheckActionPerformed
-
-    private void onlyFirefoxCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlyFirefoxCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onlyFirefoxCheckActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox allSectionsCheck;
-    private javax.swing.JTextField cacheField;
-    private javax.swing.JLabel cacheLabel;
-    private javax.swing.JCheckBox debugModeCheck;
-    private javax.swing.JTextField descField;
-    private javax.swing.JLabel descLabel;
-    private javax.swing.JTextField emailField;
-    private javax.swing.JLabel emailLabel;
-    private javax.swing.JButton findButton;
-    private javax.swing.JTextField loginUrlField;
-    private javax.swing.JLabel loginUrlLabel;
+    private javax.swing.JLabel HostLabel;
+    private javax.swing.JTextField hostField;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JCheckBox onlyFirefoxCheck;
-    private javax.swing.JTextField urlField;
-    private javax.swing.JLabel urlLabel;
-    private javax.swing.JCheckBox useChatCheck;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField portField;
+    private javax.swing.JLabel portLabel;
+    private javax.swing.JTextField schemaField;
+    private javax.swing.JLabel schemaLabel;
+    private javax.swing.JLabel sgbdLabel;
+    private javax.swing.JTextField sgdbField;
+    private javax.swing.JTextField userField;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 
     @Override
