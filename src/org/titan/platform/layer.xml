@@ -5,7 +5,7 @@
         <folder name="Project">
             <folder name="Titan">
                 <file name="TitanFrameworkProject.zip" url="wizards/newproject/TitanFrameworkProject.zip">
-                    <attr name="displayName" bundlevalue="org.titan.platform.Bundle#Templates/Project/Titan/TitanFrameworkProject.zip"/>
+                    <attr name="displayName" bundlevalue="org.titan.platform.wizards.newproject.Bundle#Templates/Project/Titan/TitanFrameworkProject.zip"/>
                     <attr name="instantiatingIterator" methodvalue="org.titan.platform.wizards.newproject.TitanFrameworkWizardIterator.createIterator"/>
                     <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/titan/platform/TitanFrameworkDescription.html"/>
                     <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/resources/titan.ico"/>

@@ -7,14 +7,14 @@ package org.titan.platform.wizards.newproject;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.openide.WizardDescriptor;
 
 public class ConfigurationPanelVisual extends JPanel implements DocumentListener {
 
     public static final String PROP_PROJECT_NAME = "projectName";
     private ConfigurationWizardPanel panel;
 
-
-     public ConfigurationPanelVisual(ConfigurationWizardPanel panel) {
+    public ConfigurationPanelVisual(ConfigurationWizardPanel panel) {
         initComponents();
         this.panel = panel;
         // Register listener on the textFields to make the automatic updates
@@ -177,7 +177,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private void onlyFirefoxCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlyFirefoxCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onlyFirefoxCheckActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox allSectionsCheck;
     private javax.swing.JTextField cacheField;
@@ -219,4 +218,19 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    void store(WizardDescriptor d) {
+        String name = nameField.getText().trim();
+        String desc = descField.getText().trim();
+        String url = urlField.getText().trim();
+        String email = emailField.getText().trim();
+        String loginUrl = loginUrlField.getText().trim();
+        String cachePath = cacheField.getText().trim();
+
+        d.putProperty("name", name);
+        d.putProperty("desc", desc);
+        d.putProperty("url", url);
+        d.putProperty("email", email);
+        d.putProperty("loginUrl", loginUrl);
+        d.putProperty("cachePath", cachePath);
+    }
 }
