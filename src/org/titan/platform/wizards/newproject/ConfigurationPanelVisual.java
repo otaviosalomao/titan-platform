@@ -4,6 +4,7 @@
  */
 package org.titan.platform.wizards.newproject;
 
+import java.io.File;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -225,12 +226,33 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         String email = emailField.getText().trim();
         String loginUrl = loginUrlField.getText().trim();
         String cachePath = cacheField.getText().trim();
+        String debugMode = "false";
+        String useChat = "false";
+        String allSections = "false";
+        String onlyFirefox = "false";
+
+        if(debugModeCheck.isSelected()){
+            debugMode = "true";
+        }
+        if(useChatCheck.isSelected()){
+            useChat = "true";
+        }
+        if(allSectionsCheck.isSelected()){
+            allSections = "true";
+        }
+        if(onlyFirefoxCheck.isSelected()){
+            onlyFirefox = "true";
+        }
 
         d.putProperty("name", name);
         d.putProperty("desc", desc);
         d.putProperty("url", url);
         d.putProperty("email", email);
         d.putProperty("loginUrl", loginUrl);
-        d.putProperty("cachePath", cachePath);
+        d.putProperty("cachePath", new File(cachePath));
+        d.putProperty("debugMode", debugMode);
+        d.putProperty("useChat", useChat);
+        d.putProperty("allSections", allSections);
+        d.putProperty("onlyFirefox", onlyFirefox);
     }
 }
