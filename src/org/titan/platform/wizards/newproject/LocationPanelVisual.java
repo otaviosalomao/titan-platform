@@ -210,7 +210,6 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             }
             panel.fireChangeEvent();
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_browseCoreButtonActionPerformed
 
     private void browseReposButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseReposButtonActionPerformed
@@ -233,7 +232,6 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             }
             panel.fireChangeEvent();
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_browseReposButtonActionPerformed
 
 

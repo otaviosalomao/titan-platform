@@ -7,6 +7,7 @@ package org.titan.platform.wizards.newproject;
 import java.awt.Component;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
@@ -60,6 +61,16 @@ public class ConfigurationWizardPanel implements WizardDescriptor.Panel,
         }
     }
 
+    protected final void fireChangeEvent() {
+        Set<ChangeListener> ls;
+        synchronized (listeners) {
+            ls = new HashSet<ChangeListener>(listeners);
+        }
+        ChangeEvent ev = new ChangeEvent(this);
+        for (ChangeListener l : ls) {
+            l.stateChanged(ev);
+        }
+    }
     @Override
     public void validate() throws WizardValidationException {
         //throw new UnsupportedOperationException("Not supported yet.");

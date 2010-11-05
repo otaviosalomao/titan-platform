@@ -5,10 +5,12 @@
 package org.titan.platform.wizards.newproject;
 
 import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
+import org.openide.filesystems.FileUtil;
 
 public class ConfigurationPanelVisual extends JPanel implements DocumentListener {
 
@@ -42,10 +44,10 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         cacheField = new javax.swing.JTextField();
         loginUrlField = new javax.swing.JTextField();
         findButton = new javax.swing.JButton();
-        allSectionsCheck = new javax.swing.JCheckBox();
         debugModeCheck = new javax.swing.JCheckBox();
         useChatCheck = new javax.swing.JCheckBox();
         onlyFirefoxCheck = new javax.swing.JCheckBox();
+        allSectionsCheck = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(551, 315));
 
@@ -62,11 +64,10 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         org.openide.awt.Mnemonics.setLocalizedText(cacheLabel, "Caminho Cache:");
 
         org.openide.awt.Mnemonics.setLocalizedText(findButton, "Procurar...");
-
-        org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, "all-sections");
-        allSectionsCheck.addActionListener(new java.awt.event.ActionListener() {
+        findButton.setActionCommand("BROWSE");
+        findButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allSectionsCheckActionPerformed(evt);
+                browseCacheButtonActionPerformed(evt);
             }
         });
 
@@ -86,6 +87,8 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             }
         });
 
+        org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, "all-sections");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,18 +106,18 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                             .addComponent(cacheLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addComponent(cacheField, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(cacheField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
                         .addComponent(findButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(debugModeCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(4, 4, 4)
                         .addComponent(useChatCheck)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(allSectionsCheck)
@@ -132,7 +135,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descLabel)
-                    .addComponent(descField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(descField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(urlLabel)
@@ -156,13 +159,9 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                     .addComponent(useChatCheck)
                     .addComponent(allSectionsCheck)
                     .addComponent(onlyFirefoxCheck))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void allSectionsCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allSectionsCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_allSectionsCheckActionPerformed
 
     private void useChatCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useChatCheckActionPerformed
         // TODO add your handling code here:
@@ -171,6 +170,28 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private void onlyFirefoxCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlyFirefoxCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onlyFirefoxCheckActionPerformed
+
+    private void browseCacheButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCacheButtonActionPerformed
+        String command = evt.getActionCommand();
+        if ("BROWSE".equals(command)) {
+            JFileChooser chooser = new JFileChooser();
+            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
+            chooser.setDialogTitle("Select Repos Location");
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            String path = this.cacheField.getText();
+            if (path.length() > 0) {
+                File f = new File(path);
+                if (f.exists()) {
+                    chooser.setSelectedFile(f);
+                }
+            }
+            if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(this)) {
+                File projectDir = chooser.getSelectedFile();
+                cacheField.setText(FileUtil.normalizeFile(projectDir).getAbsolutePath());
+            }
+            panel.fireChangeEvent();
+        }
+    }//GEN-LAST:event_browseCacheButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox allSectionsCheck;

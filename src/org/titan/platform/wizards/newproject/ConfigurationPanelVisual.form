@@ -24,7 +24,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loginUrlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -33,22 +33,22 @@
                           <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="cacheLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="loginUrlField" alignment="0" pref="274" max="32767" attributes="0"/>
-                          <Component id="emailField" alignment="0" pref="274" max="32767" attributes="0"/>
-                          <Component id="cacheField" alignment="0" pref="274" max="32767" attributes="0"/>
-                          <Component id="urlField" alignment="0" pref="274" max="32767" attributes="0"/>
-                          <Component id="descField" alignment="0" pref="274" max="32767" attributes="0"/>
-                          <Component id="nameField" alignment="0" pref="274" max="32767" attributes="2"/>
+                          <Component id="loginUrlField" alignment="0" pref="276" max="32767" attributes="2"/>
+                          <Component id="emailField" alignment="0" pref="276" max="32767" attributes="2"/>
+                          <Component id="urlField" alignment="0" pref="276" max="32767" attributes="2"/>
+                          <Component id="descField" alignment="0" pref="276" max="32767" attributes="2"/>
+                          <Component id="nameField" alignment="0" pref="276" max="32767" attributes="2"/>
+                          <Component id="cacheField" alignment="1" pref="276" max="32767" attributes="2"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="findButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                       <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,7 +71,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="descLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="descField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="descField" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -101,7 +101,7 @@
                   <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="125" max="32767" attributes="0"/>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -152,14 +152,10 @@
     <Component class="javax.swing.JButton" name="findButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Procurar..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="allSectionsCheck">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="all-sections"/>
+        <Property name="actionCommand" type="java.lang.String" value="BROWSE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allSectionsCheckActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseCacheButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="debugModeCheck">
@@ -182,6 +178,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onlyFirefoxCheckActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="allSectionsCheck">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="all-sections"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
