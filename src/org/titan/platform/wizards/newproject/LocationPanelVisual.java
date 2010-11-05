@@ -253,9 +253,13 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
     void store(WizardDescriptor d) {
         String name = projectNameTextField.getText().trim();
         String folder = createdFolderTextField.getText().trim();
+        String core = corePathField.getText().trim();
+        String repos = reposPathField.getText().trim();
 
         d.putProperty("projdir", new File(folder));
         d.putProperty("name", name);
+        d.putProperty("core", new File(core));
+        d.putProperty("repos", new File(repos));
     }
 
     void read(WizardDescriptor settings) {

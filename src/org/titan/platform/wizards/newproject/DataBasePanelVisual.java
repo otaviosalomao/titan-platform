@@ -7,6 +7,7 @@ package org.titan.platform.wizards.newproject;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.openide.WizardDescriptor;
 
 public class DataBasePanelVisual extends JPanel implements DocumentListener {
 
@@ -153,6 +154,25 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
     @Override
     public void changedUpdate(DocumentEvent de) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    void store(WizardDescriptor d) {
+        String sgdb = sgdbField.getText().trim();
+        String host = hostField.getText().trim();
+        String name = nameField.getText().trim();
+        String user = userField.getText().trim();
+        String port = portField.getText().trim();
+        String password = passwordField.getText().trim();
+        String schema = schemaField.getText().trim();
+
+        d.putProperty("sgdb", sgdb);
+        d.putProperty("host", host);
+        d.putProperty("name", name);
+        d.putProperty("user", user);
+        d.putProperty("port", port);
+        d.putProperty("password", password);
+        d.putProperty("schema", schema);
+     
     }
 
 }
