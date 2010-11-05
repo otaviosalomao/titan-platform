@@ -167,7 +167,7 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
 
         d.putProperty("sgdb", sgdb);
         d.putProperty("host", host);
-        d.putProperty("name", name);
+        d.putProperty("databaseName", name);
         d.putProperty("user", user);
         d.putProperty("port", port);
         d.putProperty("password", password);

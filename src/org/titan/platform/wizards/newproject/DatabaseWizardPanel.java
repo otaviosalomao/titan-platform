@@ -72,6 +72,7 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
 
     @Override
     public void storeSettings(Object settings) {
-       // throw new UnsupportedOperationException("Not supported yet.");
+        WizardDescriptor d = (WizardDescriptor) settings;
+        component.store(d);
     }
 }

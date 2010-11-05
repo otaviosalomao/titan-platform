@@ -4,6 +4,10 @@
  */
 package org.titan.platform.wizards.newproject;
 
+import freemarker.template.Configuration;
+import freemarker.template.DefaultObjectWrapper;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import java.awt.Component;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,9 +15,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.text.MessageFormat;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.zip.ZipEntry;
@@ -52,7 +60,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
                     new LocationWizardPanel(),
                     new ConfigurationWizardPanel(),
                     new DatabaseWizardPanel()
-        };
+                };
     }
 
     private String[] createSteps() {
@@ -61,7 +69,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
                     NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo2"),
                     NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo3"),
                     NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo4")
-        };
+                };
     }
 
     public Set/*<FileObject>*/ instantiate(/*ProgressHandle handle*/) throws IOException {
@@ -72,7 +80,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
         FileObject template = Templates.getTemplate(wiz);
         FileObject dir = FileUtil.toFileObject(dirF);
         unZipFile(template.getInputStream(), dir);
-
+        applyConfigurationData(dir,wiz.getProperties());
         // Always open top dir as a project:
         resultSet.add(dir);
         // Look for nested projects to open as well:
@@ -160,6 +168,28 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
     }
 
     public final void removeChangeListener(ChangeListener l) {
+    }
+
+    private static void applyConfigurationData(FileObject projectRoot, Map dataModel) {
+        Configuration cfg = new Configuration();
+        try {
+            File f = FileUtil.toFile(projectRoot.getFileObject("configure"));
+            cfg.setDirectoryForTemplateLoading(f);
+            cfg.setObjectWrapper(new DefaultObjectWrapper());
+            Template temp = cfg.getTemplate("titan.xml");
+
+             OutputStream out = FileUtil.createData(projectRoot, "configure/titan.xml").getOutputStream();
+
+            Writer writer = new OutputStreamWriter(out);
+            temp.process(dataModel, writer);
+            out.flush();
+            out.close();
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        catch (TemplateException ex) {
+            Exceptions.printStackTrace(ex);
+        }
     }
 
     private static void unZipFile(InputStream source, FileObject projectRoot) throws IOException {

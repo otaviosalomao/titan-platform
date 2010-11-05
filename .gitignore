@@ -1,4 +1,4 @@
 build
 target
 titan-template/cache
-platform-private.properties
+*platform-private.properties
