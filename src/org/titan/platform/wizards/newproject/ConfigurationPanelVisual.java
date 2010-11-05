@@ -178,6 +178,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private void onlyFirefoxCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlyFirefoxCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onlyFirefoxCheckActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox allSectionsCheck;
     private javax.swing.JTextField cacheField;
