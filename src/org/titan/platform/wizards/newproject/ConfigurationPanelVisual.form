@@ -1,6 +1,11 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.3" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[551, 315]"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,46 +21,42 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loginUrlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="descLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="urlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cacheLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="urlField" pref="511" max="32767" attributes="0"/>
-                          <Component id="nameField" alignment="1" pref="511" max="32767" attributes="2"/>
-                          <Component id="descField" alignment="1" pref="511" max="32767" attributes="0"/>
-                          <Component id="emailField" alignment="1" pref="511" max="32767" attributes="0"/>
-                          <Component id="loginUrlField" alignment="0" pref="511" max="32767" attributes="0"/>
+                          <Component id="loginUrlField" alignment="0" pref="274" max="32767" attributes="0"/>
+                          <Component id="emailField" alignment="0" pref="274" max="32767" attributes="0"/>
+                          <Component id="cacheField" alignment="0" pref="274" max="32767" attributes="0"/>
+                          <Component id="urlField" alignment="0" pref="274" max="32767" attributes="0"/>
+                          <Component id="descField" alignment="0" pref="274" max="32767" attributes="0"/>
+                          <Component id="nameField" alignment="0" pref="274" max="32767" attributes="2"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="cacheLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="cacheField" pref="383" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="1"/>
                       <Component id="findButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-              <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,14 +94,14 @@
                   <Component id="cacheField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="findButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="debugModeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="useChatCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <EmptySpace pref="125" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
