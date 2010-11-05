@@ -78,15 +78,21 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Localização repos:");
 
-        reposPathField.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(coreButton, "Procurar...");
+        coreButton.setActionCommand("BROWSE");
+        coreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reposPathFieldActionPerformed(evt);
+                browseCoreButtonActionPerformed(evt);
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(coreButton, "Procurar...");
-
         org.openide.awt.Mnemonics.setLocalizedText(reposButton, "Procurar...");
+        reposButton.setActionCommand("BROWSE");
+        reposButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseReposButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -179,9 +185,52 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
 
     }//GEN-LAST:event_browseButtonActionPerformed
 
-    private void reposPathFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reposPathFieldActionPerformed
+    private void browseCoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoreButtonActionPerformed
+        String command = evt.getActionCommand();
+        if ("BROWSE".equals(command)) {
+            JFileChooser chooser = new JFileChooser();
+            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
+            chooser.setDialogTitle("Select Core Location");
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            String path = this.corePathField.getText();
+            if (path.length() > 0) {
+                File f = new File(path);
+                if (f.exists()) {
+                    chooser.setSelectedFile(f);
+                }
+            }
+            if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(this)) {
+                File projectDir = chooser.getSelectedFile();
+                corePathField.setText(FileUtil.normalizeFile(projectDir).getAbsolutePath());
+            }
+            panel.fireChangeEvent();
+        }
         // TODO add your handling code here:
-    }//GEN-LAST:event_reposPathFieldActionPerformed
+    }//GEN-LAST:event_browseCoreButtonActionPerformed
+
+    private void browseReposButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseReposButtonActionPerformed
+        String command = evt.getActionCommand();
+        if ("BROWSE".equals(command)) {
+            JFileChooser chooser = new JFileChooser();
+            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
+            chooser.setDialogTitle("Select Repos Location");
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            String path = this.reposPathField.getText();
+            if (path.length() > 0) {
+                File f = new File(path);
+                if (f.exists()) {
+                    chooser.setSelectedFile(f);
+                }
+            }
+            if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(this)) {
+                File projectDir = chooser.getSelectedFile();
+                reposPathField.setText(FileUtil.normalizeFile(projectDir).getAbsolutePath());
+            }
+            panel.fireChangeEvent();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_browseReposButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseButton;

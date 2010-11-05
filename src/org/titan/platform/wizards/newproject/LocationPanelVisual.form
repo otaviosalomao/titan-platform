@@ -163,19 +163,24 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="reposPathField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reposPathFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="coreButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Procurar..."/>
+        <Property name="actionCommand" type="java.lang.String" value="BROWSE"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseCoreButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="reposButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Procurar..."/>
+        <Property name="actionCommand" type="java.lang.String" value="BROWSE"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseReposButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
