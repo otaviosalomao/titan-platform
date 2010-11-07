@@ -19,7 +19,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.text.MessageFormat;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;

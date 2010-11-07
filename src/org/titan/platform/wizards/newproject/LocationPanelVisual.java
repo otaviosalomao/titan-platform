@@ -14,6 +14,7 @@ import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.filesystems.FileUtil;
+import org.resourceUtils.ResourceUtils;
 
 public class LocationPanelVisual extends JPanel implements DocumentListener {
 
@@ -311,8 +312,11 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
 
         d.putProperty("projdir", new File(folder));
         d.putProperty("name", name);
-        d.putProperty("corePath", new File(core));
-        d.putProperty("reposPath", new File(repos));
+
+        String base = folder+File.separator+"configure";
+
+        d.putProperty("corePath", ResourceUtils.getRelativePath(core, base, File.separator));
+        d.putProperty("reposPath",ResourceUtils.getRelativePath(repos, base, File.separator));
     }
 
     void read(WizardDescriptor settings) {
