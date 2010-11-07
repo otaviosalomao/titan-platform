@@ -314,9 +314,12 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         d.putProperty("name", name);
 
         String base = folder+File.separator+"configure";
-
-        d.putProperty("corePath", ResourceUtils.getRelativePath(core, base, File.separator)+File.separator);
-        d.putProperty("reposPath",ResourceUtils.getRelativePath(repos, base, File.separator)+File.separator);
+        if(core != null && core.length() > 0){
+            d.putProperty("corePath", ResourceUtils.getRelativePath(core, base, File.separator)+File.separator);
+        }
+        if(repos != null && repos.length() > 0){
+            d.putProperty("reposPath",ResourceUtils.getRelativePath(repos, base, File.separator)+File.separator);
+        }
     }
 
     void read(WizardDescriptor settings) {
