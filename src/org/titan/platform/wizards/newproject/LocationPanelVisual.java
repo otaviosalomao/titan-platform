@@ -15,6 +15,7 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.filesystems.FileUtil;
 import org.resourceUtils.ResourceUtils;
+import org.titan.platform.TitanPlatformUtils;
 
 public class LocationPanelVisual extends JPanel implements DocumentListener {
 
@@ -264,17 +265,32 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
     boolean valid(WizardDescriptor wizardDescriptor) {
 
         if (projectNameTextField.getText().length() == 0) {
-            // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_ERROR_MESSAGE:
             wizardDescriptor.putProperty("WizardPanel_errorMessage",
-                    "Project Name is not a valid folder name.");
+                    "O nome do projeto não é um diretório válido.");
             return false; // Display name not specified
         }
-        File f = FileUtil.normalizeFile(new File(projectLocationTextField.getText()).getAbsoluteFile());
-        if (!f.isDirectory()) {
-            String message = "Project Folder is not a valid path.";
+
+        if (!TitanPlatformUtils.isDirectory(projectLocationTextField.getText())) {
+            String message = "O diretório do projeto é inválido.";
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
+        
+        if (!TitanPlatformUtils.isDirectory(corePathField.getText())) {
+            String message = "A localização do core não é um diretório válido.";
+            wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
+            return false;
+        }
+
+        if (!TitanPlatformUtils.isDirectory(reposPathField.getText())) {
+            String message = "A localização do repos não é um diretório válido.";
+            wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
+            return false;
+        }
+
+
+
+
         final File destFolder = FileUtil.normalizeFile(new File(createdFolderTextField.getText()).getAbsoluteFile());
 
         File projLoc = destFolder;
@@ -297,7 +313,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if (destFolder.exists() && kids != null && kids.length > 0) {
             // Folder exists and is not empty
             wizardDescriptor.putProperty("WizardPanel_errorMessage",
-                    "Project Folder already exists and is not empty.");
+                    "O diretório do projeto já existe e não está vazio.");
             return false;
         }
         wizardDescriptor.putProperty("WizardPanel_errorMessage", "");
