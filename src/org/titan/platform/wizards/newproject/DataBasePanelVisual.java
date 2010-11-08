@@ -58,6 +58,9 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
 
         org.openide.awt.Mnemonics.setLocalizedText(schemaLabel, "Schema:");
 
+        sgdbField.setEditable(false);
+        sgdbField.setText("PostgreSQL");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(

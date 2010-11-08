@@ -121,6 +121,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="sgdbField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="PostgreSQL"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="hostField">
     </Component>
