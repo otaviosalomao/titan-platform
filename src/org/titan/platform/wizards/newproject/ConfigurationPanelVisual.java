@@ -49,6 +49,9 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         useChatCheck = new javax.swing.JCheckBox();
         onlyFirefoxCheck = new javax.swing.JCheckBox();
         allSectionsCheck = new javax.swing.JCheckBox();
+        cacheLabel1 = new javax.swing.JLabel();
+        logoPathField = new javax.swing.JTextField();
+        findLogoButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(551, 315));
 
@@ -100,6 +103,16 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         allSectionsCheck.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, "todas as sessões");
 
+        org.openide.awt.Mnemonics.setLocalizedText(cacheLabel1, "Logo:");
+
+        org.openide.awt.Mnemonics.setLocalizedText(findLogoButton, "Procurar...");
+        findLogoButton.setActionCommand("BROWSE");
+        findLogoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileLogoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,17 +135,24 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                             .addComponent(descLabel)
                             .addComponent(urlLabel)
                             .addComponent(emailLabel)
-                            .addComponent(cacheLabel))
+                            .addComponent(cacheLabel)
+                            .addComponent(cacheLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(cacheField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addComponent(findButton)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(logoPathField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                .addGap(10, 10, 10)
+                                .addComponent(findLogoButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                    .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                    .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                    .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                                    .addComponent(cacheField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addComponent(findButton)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -163,13 +183,18 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                     .addComponent(cacheLabel)
                     .addComponent(cacheField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cacheLabel1)
+                    .addComponent(logoPathField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(findLogoButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(useChatCheck)
                     .addComponent(allSectionsCheck)
                     .addComponent(onlyFirefoxCheck)
                     .addComponent(debugModeCheck))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,18 +237,43 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         }
     }//GEN-LAST:event_urlFieldFocusLost
 
+    private void fileLogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileLogoButtonActionPerformed
+       String command = evt.getActionCommand();
+        if ("BROWSE".equals(command)) {
+            JFileChooser chooser = new JFileChooser();
+            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
+            chooser.setDialogTitle("Select logo Location");
+            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            String path = this.logoPathField.getText();
+            if (path.length() > 0) {
+                File f = new File(path);
+                if (f.exists()) {
+                    chooser.setSelectedFile(f);
+                }
+            }
+            if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(this)) {
+                File projectDir = chooser.getSelectedFile();
+                logoPathField.setText(FileUtil.normalizeFile(projectDir).getAbsolutePath());
+            }
+            panel.fireChangeEvent();
+        }
+    }//GEN-LAST:event_fileLogoButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox allSectionsCheck;
     private javax.swing.JTextField cacheField;
     private javax.swing.JLabel cacheLabel;
+    private javax.swing.JLabel cacheLabel1;
     private javax.swing.JCheckBox debugModeCheck;
     private javax.swing.JTextField descField;
     private javax.swing.JLabel descLabel;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JButton findButton;
+    private javax.swing.JButton findLogoButton;
     private javax.swing.JTextField loginUrlField;
     private javax.swing.JLabel loginUrlLabel;
+    private javax.swing.JTextField logoPathField;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JCheckBox onlyFirefoxCheck;

@@ -21,8 +21,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
@@ -41,18 +41,28 @@
                           <Component id="urlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="cacheLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cacheLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="loginUrlField" alignment="0" pref="276" max="32767" attributes="2"/>
-                          <Component id="emailField" alignment="0" pref="276" max="32767" attributes="2"/>
-                          <Component id="urlField" alignment="0" pref="276" max="32767" attributes="2"/>
-                          <Component id="descField" alignment="0" pref="276" max="32767" attributes="2"/>
-                          <Component id="nameField" alignment="0" pref="276" max="32767" attributes="2"/>
-                          <Component id="cacheField" alignment="1" pref="276" max="32767" attributes="2"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="logoPathField" pref="276" max="32767" attributes="2"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="findLogoButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="loginUrlField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="emailField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="urlField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="descField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="nameField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="cacheField" alignment="1" pref="276" max="32767" attributes="2"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="findButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="findButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -93,14 +103,20 @@
                   <Component id="cacheField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="findButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cacheLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="logoPathField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="findLogoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="useChatCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="debugModeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="112" max="32767" attributes="0"/>
+              <EmptySpace pref="81" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -190,6 +206,22 @@
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="todas as sess&#xf5;es"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cacheLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Logo:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="logoPathField">
+    </Component>
+    <Component class="javax.swing.JButton" name="findLogoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Procurar..."/>
+        <Property name="actionCommand" type="java.lang.String" value="BROWSE"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileLogoButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
