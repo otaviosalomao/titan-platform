@@ -61,6 +61,13 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
         sgdbField.setEditable(false);
         sgdbField.setText("PostgreSQL");
 
+        hostField.setText("localhost");
+
+        portField.setText("5432");
+
+        schemaField.setEditable(false);
+        schemaField.setText("titan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(

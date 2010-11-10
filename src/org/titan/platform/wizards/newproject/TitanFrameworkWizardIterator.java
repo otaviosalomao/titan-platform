@@ -17,16 +17,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
+import org.joda.time.DateTime;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
@@ -40,6 +45,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import static org.titan.platform.utils.MD5.md5;
 
 public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress*/InstantiatingIterator {
 
@@ -79,7 +85,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
         FileObject template = Templates.getTemplate(wiz);
         FileObject dir = FileUtil.toFileObject(dirF);
         unZipFile(template.getInputStream(), dir);
-        applyConfigurationData(dir,wiz.getProperties());
+        applyConfigurationData(dir, wiz.getProperties());
         // Always open top dir as a project:
         resultSet.add(dir);
         // Look for nested projects to open as well:
@@ -170,23 +176,36 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
     }
 
     private static void applyConfigurationData(FileObject projectRoot, Map dataModel) {
+
         Configuration cfg = new Configuration();
         try {
+
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(new Date().toString().getBytes());
+            Random r = new Random();
+            byte[] bytes = Long.toString(Math.abs(r.nextLong()), 36).getBytes();
+            dataModel.put("sessionHash", md5(bytes));
+            bytes = Long.toString(Math.abs(r.nextLong()), 36).getBytes();
+            dataModel.put("securityHash", md5(bytes));
+            bytes = Long.toString(Math.abs(r.nextLong()), 36).getBytes();
+            dataModel.put("searchHash", md5(bytes));
+
             File f = FileUtil.toFile(projectRoot.getFileObject("configure"));
             cfg.setDirectoryForTemplateLoading(f);
             cfg.setObjectWrapper(new DefaultObjectWrapper());
             Template temp = cfg.getTemplate("titan.xml");
 
-             OutputStream out = FileUtil.createData(projectRoot, "configure/titan.xml").getOutputStream();
+            OutputStream out = FileUtil.createData(projectRoot, "configure/titan.xml").getOutputStream();
 
             Writer writer = new OutputStreamWriter(out);
             temp.process(dataModel, writer);
             out.flush();
             out.close();
+        } catch (NoSuchAlgorithmException ex) {
+            Exceptions.printStackTrace(ex);
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
-        }
-        catch (TemplateException ex) {
+        } catch (TemplateException ex) {
             Exceptions.printStackTrace(ex);
         }
     }

@@ -14,8 +14,9 @@ import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.filesystems.FileUtil;
-import org.resourceUtils.ResourceUtils;
+
 import org.titan.platform.TitanPlatformUtils;
+import org.titan.platform.utils.ResourceUtils;
 
 public class LocationPanelVisual extends JPanel implements DocumentListener {
 
