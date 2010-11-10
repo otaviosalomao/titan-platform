@@ -29,6 +29,8 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         // Register listener on the textFields to make the automatic updates
         projectNameTextField.getDocument().addDocumentListener(this);
         projectLocationTextField.getDocument().addDocumentListener(this);
+        corePathField.getDocument().addDocumentListener(this);
+        reposPathField.getDocument().addDocumentListener(this);
     }
 
     public String getProjectName() {
@@ -366,6 +368,12 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
             firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
         }
+        if(this.corePathField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
+        }
+        if(this.reposPathField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
+        }
     }
 
     public void insertUpdate(DocumentEvent e) {
@@ -373,12 +381,24 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
             firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
         }
+        if(this.corePathField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
+        }
+         if(this.reposPathField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
+        }
     }
 
     public void removeUpdate(DocumentEvent e) {
         updateTexts(e);
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
             firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
+        }
+        if(this.corePathField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
+        }
+         if(this.reposPathField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
         }
     }
 

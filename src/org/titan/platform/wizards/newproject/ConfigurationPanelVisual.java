@@ -11,6 +11,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileUtil;
+import org.titan.platform.TitanPlatformUtils;
 
 public class ConfigurationPanelVisual extends JPanel implements DocumentListener {
 
@@ -21,6 +22,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         initComponents();
         this.panel = panel;
         // Register listener on the textFields to make the automatic updates
+        cacheField.getDocument().addDocumentListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -63,6 +65,12 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
 
         org.openide.awt.Mnemonics.setLocalizedText(cacheLabel, "Caminho Cache:");
 
+        urlField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                urlFieldFocusLost(evt);
+            }
+        });
+
         org.openide.awt.Mnemonics.setLocalizedText(findButton, "Procurar...");
         findButton.setActionCommand("BROWSE");
         findButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,32 +79,42 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(debugModeCheck, "debug-mode");
+        debugModeCheck.setSelected(true);
+        org.openide.awt.Mnemonics.setLocalizedText(debugModeCheck, "modo debug");
 
-        org.openide.awt.Mnemonics.setLocalizedText(useChatCheck, "use-chat");
+        org.openide.awt.Mnemonics.setLocalizedText(useChatCheck, "usar chat");
         useChatCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 useChatCheckActionPerformed(evt);
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(onlyFirefoxCheck, "only-firefox");
+        org.openide.awt.Mnemonics.setLocalizedText(onlyFirefoxCheck, "somente firefox");
         onlyFirefoxCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onlyFirefoxCheckActionPerformed(evt);
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, "all-sections");
+        allSectionsCheck.setSelected(true);
+        org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, "todas as sessões");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(debugModeCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(useChatCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(allSectionsCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(onlyFirefoxCheck))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(loginUrlLabel)
                             .addComponent(nameLabel)
@@ -113,16 +131,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                             .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                             .addComponent(cacheField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                         .addGap(10, 10, 10)
-                        .addComponent(findButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(debugModeCheck)
-                        .addGap(4, 4, 4)
-                        .addComponent(useChatCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(allSectionsCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(onlyFirefoxCheck)))
+                        .addComponent(findButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -155,10 +164,10 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                     .addComponent(findButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(debugModeCheck)
                     .addComponent(useChatCheck)
                     .addComponent(allSectionsCheck)
-                    .addComponent(onlyFirefoxCheck))
+                    .addComponent(onlyFirefoxCheck)
+                    .addComponent(debugModeCheck))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -193,6 +202,15 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         }
     }//GEN-LAST:event_browseCacheButtonActionPerformed
 
+    private void urlFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_urlFieldFocusLost
+        if(urlField.getText().trim().length() > 0){
+            loginUrlField.setText(urlField.getText().trim()+"/titan.php?target=login");
+        }
+        else{
+               loginUrlField.setText("");
+        }
+    }//GEN-LAST:event_urlFieldFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox allSectionsCheck;
     private javax.swing.JTextField cacheField;
@@ -218,21 +236,43 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         super.addNotify();
         //same problem as in 31086, initial focus on Cancel button
     }
-
-    @Override
-    public void insertUpdate(DocumentEvent de) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    boolean valid(WizardDescriptor wizardDescriptor) {
+           if (!TitanPlatformUtils.isDirectory(cacheField.getText())) {
+            String message = "A localização do cache não é um diretório válido.";
+            wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
+            return false;
+        }
+        wizardDescriptor.putProperty("WizardPanel_errorMessage", "");
+        return true;
     }
 
     @Override
-    public void removeUpdate(DocumentEvent de) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void insertUpdate(DocumentEvent e) {
+        updateTexts(e);
+        if(this.cacheField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.cacheField.getText());
+        }
     }
 
     @Override
-    public void changedUpdate(DocumentEvent de) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void removeUpdate(DocumentEvent e) {
+        updateTexts(e);
+        if(this.cacheField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.cacheField.getText());
+        }
     }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        updateTexts(e);
+        if(this.cacheField.getDocument() == e.getDocument()){
+             firePropertyChange(PROP_PROJECT_NAME, null, this.cacheField.getText());
+        }
+    }
+
+   private void updateTexts(DocumentEvent e) {
+        panel.fireChangeEvent(); // Notify that the panel changed
+   }
 
     void store(WizardDescriptor d) {
         String name = nameField.getText().trim();
@@ -269,5 +309,9 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         d.putProperty("useChat", useChat);
         d.putProperty("allSections", allSections);
         d.putProperty("onlyFirefox", onlyFirefox);
+    }
+
+    void read(WizardDescriptor settings) {
+        //
     }
 }

@@ -46,7 +46,8 @@ public class ConfigurationWizardPanel implements WizardDescriptor.Panel,
 
     @Override
     public boolean isValid() {
-        return true;
+        getComponent();
+        return component.valid(wizardDescriptor);
     }
 
     public final void addChangeListener(ChangeListener l) {
@@ -78,7 +79,8 @@ public class ConfigurationWizardPanel implements WizardDescriptor.Panel,
 
     @Override
     public void readSettings(Object settings) {
-       // throw new UnsupportedOperationException("Not supported yet.");
+        wizardDescriptor = (WizardDescriptor) settings;
+        component.read(wizardDescriptor);
     }
 
     @Override
