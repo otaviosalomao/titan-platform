@@ -148,6 +148,9 @@
     <Component class="javax.swing.JTextField" name="emailField">
     </Component>
     <Component class="javax.swing.JTextField" name="cacheField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="cache/"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="loginUrlField">
     </Component>

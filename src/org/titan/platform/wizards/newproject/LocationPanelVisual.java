@@ -278,13 +278,13 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             return false;
         }
         
-        if (!TitanPlatformUtils.isDirectory(corePathField.getText())) {
+        if (!TitanPlatformUtils.isDirectory(corePathField.getText()) || corePathField.getText().trim().length() == 0) {
             String message = "A localização do core não é um diretório válido.";
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
 
-        if (!TitanPlatformUtils.isDirectory(reposPathField.getText())) {
+        if (!TitanPlatformUtils.isDirectory(reposPathField.getText()) || reposPathField.getText().trim().length() == 0) {
             String message = "A localização do repos não é um diretório válido.";
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
@@ -332,6 +332,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         d.putProperty("name", name);
 
         String base = folder+File.separator+"configure";
+        
         if(core != null && core.length() > 0){
             d.putProperty("corePath", ResourceUtils.getRelativePath(core, base, File.separator)+File.separator);
         }

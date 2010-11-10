@@ -22,7 +22,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         initComponents();
         this.panel = panel;
         // Register listener on the textFields to make the automatic updates
-        cacheField.getDocument().addDocumentListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -70,6 +69,8 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                 urlFieldFocusLost(evt);
             }
         });
+
+        cacheField.setText("cache/");
 
         org.openide.awt.Mnemonics.setLocalizedText(findButton, "Procurar...");
         findButton.setActionCommand("BROWSE");
@@ -237,11 +238,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         //same problem as in 31086, initial focus on Cancel button
     }
     boolean valid(WizardDescriptor wizardDescriptor) {
-           if (!TitanPlatformUtils.isDirectory(cacheField.getText())) {
-            String message = "A localização do cache não é um diretório válido.";
-            wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
-            return false;
-        }
+
         wizardDescriptor.putProperty("WizardPanel_errorMessage", "");
         return true;
     }
@@ -249,25 +246,16 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     @Override
     public void insertUpdate(DocumentEvent e) {
         updateTexts(e);
-        if(this.cacheField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.cacheField.getText());
-        }
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
         updateTexts(e);
-        if(this.cacheField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.cacheField.getText());
-        }
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
         updateTexts(e);
-        if(this.cacheField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.cacheField.getText());
-        }
     }
 
    private void updateTexts(DocumentEvent e) {
