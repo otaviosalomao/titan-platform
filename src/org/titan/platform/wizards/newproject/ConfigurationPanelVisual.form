@@ -21,10 +21,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loginUrlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -45,18 +54,8 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="findButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,10 +95,10 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="debugModeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="useChatCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="debugModeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>
@@ -142,6 +141,9 @@
     <Component class="javax.swing.JTextField" name="descField">
     </Component>
     <Component class="javax.swing.JTextField" name="urlField">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="urlFieldFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="emailField">
     </Component>
@@ -160,12 +162,13 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="debugModeCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="debug-mode"/>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="modo debug"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="useChatCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="use-chat"/>
+        <Property name="text" type="java.lang.String" value="usar chat"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="useChatCheckActionPerformed"/>
@@ -173,7 +176,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="onlyFirefoxCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="only-firefox"/>
+        <Property name="text" type="java.lang.String" value="somente firefox"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onlyFirefoxCheckActionPerformed"/>
@@ -181,7 +184,8 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="allSectionsCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="all-sections"/>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="todas as sess&#xf5;es"/>
       </Properties>
     </Component>
   </SubComponents>
