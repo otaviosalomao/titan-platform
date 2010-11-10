@@ -94,7 +94,7 @@ public class ResourceUtils {
 
     
     @SuppressWarnings("serial")
-	static class PathResolutionException extends RuntimeException {
+	public static class PathResolutionException extends RuntimeException {
         PathResolutionException(String msg) {
             super(msg);
         }
