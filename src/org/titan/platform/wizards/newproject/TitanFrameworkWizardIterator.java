@@ -72,8 +72,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
         return new String[]{
                     NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo1"),
                     NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo2"),
-                    NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo3"),
-                    NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo4")
+                    NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo3")
                 };
     }
 
