@@ -12,6 +12,9 @@ import java.awt.Component;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -36,6 +39,7 @@ import org.netbeans.api.project.ProjectManager;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
+import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.Exceptions;
@@ -85,6 +89,8 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
         FileObject dir = FileUtil.toFileObject(dirF);
         unZipFile(template.getInputStream(), dir);
         applyConfigurationData(dir, wiz.getProperties());
+        copyLogoFile(dir, wiz.getProperties());
+
         // Always open top dir as a project:
         resultSet.add(dir);
         // Look for nested projects to open as well:
@@ -172,6 +178,29 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
     }
 
     public final void removeChangeListener(ChangeListener l) {
+    }
+
+    private static void copyLogoFile(FileObject projectDir, Map dataModel){
+        File file = new File(dataModel.get("logoPath").toString());
+        File imageDir = FileUtil.toFile(projectDir.getFileObject("image"));
+
+        try {
+            OutputStream out = FileUtil.createData(projectDir, "image/" + dataModel.get("logoNameFile").toString()).getOutputStream();
+            FileInputStream fis = new FileInputStream(file);
+            byte[] bytes = new byte[fis.available()];
+            fis.read(bytes);
+
+            out.write(bytes);
+            out.flush();
+            out.close();
+
+        } catch (FileAlreadyLockedException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+
     }
 
     private static void applyConfigurationData(FileObject projectRoot, Map dataModel) {

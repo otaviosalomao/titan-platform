@@ -13,6 +13,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileUtil;
+import org.titan.platform.wizards.components.ImageFileView;
+import org.titan.platform.wizards.components.ImageFilter;
+import org.titan.platform.wizards.components.ImagePreview;
 
 public class ConfigurationPanelVisual extends JPanel implements DocumentListener {
 
@@ -276,8 +279,19 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private void fileLogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileLogoButtonActionPerformed
        String command = evt.getActionCommand();
         if ("BROWSE".equals(command)) {
+
             JFileChooser chooser = new JFileChooser();
-            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
+            chooser.addChoosableFileFilter(new ImageFilter());
+            chooser.setAcceptAllFileFilterUsed(false);
+
+	    //Add custom icons for file types.
+            chooser.setFileView(new ImageFileView());
+
+	    //Add the preview pane.
+            chooser.setAccessory(new ImagePreview(chooser));
+
+
+//            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
             chooser.setDialogTitle("Select logo Location");
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             String path = this.logoPathField.getText();
@@ -405,6 +419,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         String onlyFirefox = "false";
         String language = "";
         String logoPath = logoPathField.getText().trim();
+        String logoNameFile = logoPathField.getText().substring(logoPathField.getText().trim().lastIndexOf(File.separatorChar) + 1);
 
         if(debugModeCheck.isSelected()){
             debugMode = "true";
@@ -442,6 +457,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         d.putProperty("onlyFirefox", onlyFirefox);
         d.putProperty("language", language);
         d.putProperty("logoPath", logoPath);
+        d.putProperty("logoNameFile", logoNameFile);
     }
 
     void read(WizardDescriptor settings) {
