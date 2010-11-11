@@ -17,6 +17,7 @@ import org.openide.filesystems.FileUtil;
 
 import org.titan.platform.TitanPlatformUtils;
 import org.titan.platform.utils.ResourceUtils;
+import static org.titan.platform.utils.Utils.bundle;
 
 public class LocationPanelVisual extends JPanel implements DocumentListener {
 
@@ -62,12 +63,12 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         jLabel3 = new javax.swing.JLabel();
 
         projectNameLabel.setLabelFor(projectNameTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(projectNameLabel, "Nome do Projeto:");
+        org.openide.awt.Mnemonics.setLocalizedText(projectNameLabel, bundle(this.getClass(), "label.project.name"));
 
         projectLocationLabel.setLabelFor(projectLocationTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(projectLocationLabel, "Localização do Projeto:");
+        org.openide.awt.Mnemonics.setLocalizedText(projectLocationLabel, bundle(this.getClass(),"label.project.location"));
 
-        org.openide.awt.Mnemonics.setLocalizedText(browseButton, "Procurar...");
+        org.openide.awt.Mnemonics.setLocalizedText(browseButton, bundle(this.getClass(),"browse.file"));
         browseButton.setActionCommand("BROWSE");
         browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,15 +77,15 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         });
 
         createdFolderLabel.setLabelFor(createdFolderTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(createdFolderLabel, "Pasta do Projeto:");
+        org.openide.awt.Mnemonics.setLocalizedText(createdFolderLabel, bundle(this.getClass(),"label.project.folder"));
 
         createdFolderTextField.setEditable(false);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Localização core:");
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, bundle(this.getClass(),"label.core.location"));
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Localização repos:");
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, bundle(this.getClass(),"label.repos.location"));
 
-        org.openide.awt.Mnemonics.setLocalizedText(coreButton, "Procurar...");
+        org.openide.awt.Mnemonics.setLocalizedText(coreButton, bundle(this.getClass(),"browse.file"));
         coreButton.setActionCommand("BROWSE");
         coreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +93,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(reposButton, "Procurar...");
+        org.openide.awt.Mnemonics.setLocalizedText(reposButton, bundle(this.getClass(),"browse.file"));
         reposButton.setActionCommand("BROWSE");
         reposButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +101,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Localizacao core e repos do Titan-Framework");
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, bundle(this.getClass(),"label.coreAndRepos.location"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,9 +118,9 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
                             .addComponent(createdFolderLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(projectNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                            .addComponent(createdFolderTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                            .addComponent(projectLocationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                            .addComponent(projectNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(createdFolderTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(projectLocationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(browseButton))
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,8 +130,8 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(corePathField, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                            .addComponent(reposPathField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
+                            .addComponent(corePathField, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(reposPathField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(reposButton, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +178,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if ("BROWSE".equals(command)) {
             JFileChooser chooser = new JFileChooser();
             FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
-            chooser.setDialogTitle("Select Project Location");
+            chooser.setDialogTitle(bundle(this.getClass(), "browse.location.project"));
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             String path = this.projectLocationTextField.getText();
             if (path.length() > 0) {
@@ -200,7 +201,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if ("BROWSE".equals(command)) {
             JFileChooser chooser = new JFileChooser();
             FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
-            chooser.setDialogTitle("Select Core Location");
+            chooser.setDialogTitle(bundle(this.getClass(), "browse.location.core"));
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             String path = this.corePathField.getText();
             if (path.length() > 0) {
@@ -222,7 +223,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if ("BROWSE".equals(command)) {
             JFileChooser chooser = new JFileChooser();
             FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
-            chooser.setDialogTitle("Select Repos Location");
+            chooser.setDialogTitle(bundle(this.getClass(), "browse.location.repos"));
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             String path = this.reposPathField.getText();
             if (path.length() > 0) {
@@ -238,8 +239,6 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             panel.fireChangeEvent();
         }
     }//GEN-LAST:event_browseReposButtonActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseButton;
     private javax.swing.JButton coreButton;
@@ -268,25 +267,24 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
     boolean valid(WizardDescriptor wizardDescriptor) {
 
         if (projectNameTextField.getText().length() == 0) {
-            wizardDescriptor.putProperty("WizardPanel_errorMessage",
-                    "O nome do projeto não é um diretório válido.");
+            wizardDescriptor.putProperty("WizardPanel_errorMessage", bundle(this.getClass(), "invalid.project.name"));
             return false; // Display name not specified
         }
 
         if (!TitanPlatformUtils.isDirectory(projectLocationTextField.getText())) {
-            String message = "O diretório do projeto é inválido.";
+            String message = bundle(this.getClass(),"invalid.project.directory");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
-        
+
         if (!TitanPlatformUtils.isDirectory(corePathField.getText()) || corePathField.getText().trim().length() == 0) {
-            String message = "A localização do core não é um diretório válido.";
+            String message = bundle(this.getClass(),"invalid.core.location");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
 
         if (!TitanPlatformUtils.isDirectory(reposPathField.getText()) || reposPathField.getText().trim().length() == 0) {
-            String message = "A localização do repos não é um diretório válido.";
+            String message = bundle(this.getClass(),"invalid.repos.location");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
@@ -301,13 +299,12 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             projLoc = projLoc.getParentFile();
         }
         if (projLoc == null || !projLoc.canWrite()) {
-            wizardDescriptor.putProperty("WizardPanel_errorMessage",
-                    "Project Folder cannot be created.");
+            wizardDescriptor.putProperty("WizardPanel_errorMessage", bundle(this.getClass(),"error.create.project.folder"));
             return false;
         }
 
         if (FileUtil.toFileObject(projLoc) == null) {
-            String message = "Project Folder is not a valid path.";
+            String message = bundle(this.getClass(),"invalid.project.folder");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
@@ -315,8 +312,7 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         File[] kids = destFolder.listFiles();
         if (destFolder.exists() && kids != null && kids.length > 0) {
             // Folder exists and is not empty
-            wizardDescriptor.putProperty("WizardPanel_errorMessage",
-                    "O diretório do projeto já existe e não está vazio.");
+            wizardDescriptor.putProperty("WizardPanel_errorMessage",bundle(this.getClass(),"not.empty.project.folder"));
             return false;
         }
         wizardDescriptor.putProperty("WizardPanel_errorMessage", "");
@@ -332,22 +328,22 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         d.putProperty("projdir", new File(folder));
         d.putProperty("name", name);
 
-        String base = folder+File.separator+"configure";
+        String base = folder + File.separator + "configure";
 
-        try{
-            if(core != null && core.length() > 0){
-                d.putProperty("corePath", ResourceUtils.getRelativePath(core, base, File.separator)+File.separator);
+        try {
+            if (core != null && core.length() > 0) {
+                d.putProperty("corePath", ResourceUtils.getRelativePath(core, base, File.separator) + File.separator);
             }
-        }catch(ResourceUtils.PathResolutionException e){
+        } catch (ResourceUtils.PathResolutionException e) {
             d.putProperty("corePath", "");
             e.printStackTrace();
         }
-        try{
-            if(repos != null && repos.length() > 0){
-                d.putProperty("reposPath",ResourceUtils.getRelativePath(repos, base, File.separator)+File.separator);
+        try {
+            if (repos != null && repos.length() > 0) {
+                d.putProperty("reposPath", ResourceUtils.getRelativePath(repos, base, File.separator) + File.separator);
             }
-        }catch(ResourceUtils.PathResolutionException e){
-            d.putProperty("reposPath","");
+        } catch (ResourceUtils.PathResolutionException e) {
+            d.putProperty("reposPath", "");
             e.printStackTrace();
         }
     }
@@ -379,11 +375,11 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
             firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
         }
-        if(this.corePathField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
+        if (this.corePathField.getDocument() == e.getDocument()) {
+            firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
         }
-        if(this.reposPathField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
+        if (this.reposPathField.getDocument() == e.getDocument()) {
+            firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
         }
     }
 
@@ -392,11 +388,11 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
             firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
         }
-        if(this.corePathField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
+        if (this.corePathField.getDocument() == e.getDocument()) {
+            firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
         }
-         if(this.reposPathField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
+        if (this.reposPathField.getDocument() == e.getDocument()) {
+            firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
         }
     }
 
@@ -405,11 +401,11 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
             firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
         }
-        if(this.corePathField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
+        if (this.corePathField.getDocument() == e.getDocument()) {
+            firePropertyChange(PROP_PROJECT_NAME, null, this.corePathField.getText());
         }
-         if(this.reposPathField.getDocument() == e.getDocument()){
-             firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
+        if (this.reposPathField.getDocument() == e.getDocument()) {
+            firePropertyChange(PROP_PROJECT_NAME, null, this.reposPathField.getText());
         }
     }
 

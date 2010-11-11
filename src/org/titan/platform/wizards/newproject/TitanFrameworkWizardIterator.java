@@ -53,7 +53,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
     private WizardDescriptor wiz;
 
     public TitanFrameworkWizardIterator() {
-       Locale.setDefault(new Locale("pt_BR"));
+       Locale.setDefault(Locale.US);
     }
 
     public static TitanFrameworkWizardIterator createIterator() {
