@@ -40,14 +40,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nameField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="descField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="urlField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="emailField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="loginUrlField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="cacheField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="logoPathField" alignment="0" pref="280" max="32767" attributes="2"/>
-                                  <Component id="jComboBox1" alignment="0" pref="280" max="32767" attributes="0"/>
+                                  <Component id="nameField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="descField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="urlField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="emailField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="loginUrlField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="cacheField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="logoPathField" alignment="0" pref="276" max="32767" attributes="2"/>
+                                  <Component id="jComboBox1" alignment="0" pref="276" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">

@@ -404,6 +404,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         String allSections = "false";
         String onlyFirefox = "false";
         String language = "";
+        String logoPath = logoPathField.getText().trim();
 
         if(debugModeCheck.isSelected()){
             debugMode = "true";
@@ -434,12 +435,13 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         d.putProperty("url", url);
         d.putProperty("email", email);
         d.putProperty("loginUrl", loginUrl);
-        d.putProperty("cachePath", new File(cachePath));
+        d.putProperty("cachePath", new File(cachePath) + File.separator);
         d.putProperty("debugMode", debugMode);
         d.putProperty("useChat", useChat);
         d.putProperty("allSections", allSections);
         d.putProperty("onlyFirefox", onlyFirefox);
         d.putProperty("language", language);
+        d.putProperty("logoPath", logoPath);
     }
 
     void read(WizardDescriptor settings) {
