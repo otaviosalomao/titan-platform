@@ -26,6 +26,7 @@ import java.text.MessageFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -34,7 +35,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
-import org.joda.time.DateTime;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
@@ -43,13 +43,12 @@ import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
 import org.openide.xml.XMLUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import static org.titan.platform.utils.MD5.md5;
+import static org.titan.platform.utils.Utils.*;
 
 public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress*/InstantiatingIterator {
 
@@ -58,6 +57,7 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
     private WizardDescriptor wiz;
 
     public TitanFrameworkWizardIterator() {
+       Locale.setDefault(Locale.US);
     }
 
     public static TitanFrameworkWizardIterator createIterator() {
@@ -74,9 +74,9 @@ public class TitanFrameworkWizardIterator implements WizardDescriptor./*Progress
 
     private String[] createSteps() {
         return new String[]{
-                    NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo1"),
-                    NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo2"),
-                    NbBundle.getMessage(TitanFrameworkWizardIterator.class, "passo3")
+                    bundle(this.getClass(), "step.one"),
+                    bundle(this.getClass(), "step.two"),
+                    bundle(this.getClass(), "step.three")
                 };
     }
 

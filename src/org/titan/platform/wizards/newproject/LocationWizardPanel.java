@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
+import static org.titan.platform.utils.Utils.bundle;
 
 /**
  * Panel just asking for basic info.
@@ -29,7 +29,7 @@ public class LocationWizardPanel implements WizardDescriptor.Panel,
     public Component getComponent() {
         if (component == null) {
             component = new LocationPanelVisual(this);
-            component.setName(NbBundle.getMessage(LocationWizardPanel.class, "passo1"));
+            component.setName(bundle(this.getClass(), "step.one"));
         }
         return component;
     }

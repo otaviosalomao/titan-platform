@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
+import static org.titan.platform.utils.Utils.bundle;
 
 /**
  *
@@ -32,7 +32,7 @@ public class ConfigurationWizardPanel implements WizardDescriptor.Panel,
     public Component getComponent() {
         if (component == null) {
             component = new ConfigurationPanelVisual(this);
-            component.setName(NbBundle.getMessage(LocationWizardPanel.class, "passo2"));
+            component.setName(bundle(this.getClass(), "step.two"));
         }
         return component;
     }
@@ -42,7 +42,6 @@ public class ConfigurationWizardPanel implements WizardDescriptor.Panel,
         //throw new UnsupportedOperationException("Not supported yet.");
         return null;
     }
-
 
     @Override
     public boolean isValid() {
@@ -72,6 +71,7 @@ public class ConfigurationWizardPanel implements WizardDescriptor.Panel,
             l.stateChanged(ev);
         }
     }
+
     @Override
     public void validate() throws WizardValidationException {
         //throw new UnsupportedOperationException("Not supported yet.");

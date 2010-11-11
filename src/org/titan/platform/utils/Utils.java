@@ -2,8 +2,12 @@ package org.titan.platform.utils;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import org.openide.util.NbBundle;
 
-public class MD5 {
+public class Utils {
+
+
+
 	private static MessageDigest digest;
 
 	public static String md5(byte[] bytes) throws NoSuchAlgorithmException {
@@ -19,4 +23,8 @@ public class MD5 {
 		
 		return hashtext;
 	}
+
+        public static String bundle(Class clazz, String key){
+            return NbBundle.getMessage(clazz, key);
+        }
 }

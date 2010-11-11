@@ -11,7 +11,7 @@ import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
+import static org.titan.platform.utils.Utils.bundle;
 
 /**
  *
@@ -31,7 +31,7 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
     public Component getComponent() {
         if (component == null) {
             component = new DataBasePanelVisual(this);
-            component.setName(NbBundle.getMessage(LocationWizardPanel.class, "passo2"));
+             component.setName(bundle(this.getClass(), "step.three"));
         }
         return component;
     }
