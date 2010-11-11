@@ -11,7 +11,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileUtil;
-import org.titan.platform.TitanPlatformUtils;
 
 public class ConfigurationPanelVisual extends JPanel implements DocumentListener {
 
