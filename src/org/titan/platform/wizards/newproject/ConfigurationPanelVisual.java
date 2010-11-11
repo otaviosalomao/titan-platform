@@ -4,9 +4,11 @@
  */
 package org.titan.platform.wizards.newproject;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
@@ -51,6 +53,11 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         cacheLabel1 = new javax.swing.JLabel();
         logoPathField = new javax.swing.JTextField();
         findLogoButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        languageList = new javax.swing.JList();
+        LinguagemLabel = new javax.swing.JLabel();
+        timeZoneLabel = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
 
         setPreferredSize(new java.awt.Dimension(551, 315));
 
@@ -112,6 +119,24 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             }
         });
 
+        languageList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "pt_BR", "en_US", "es_ES"};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        languageList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                listaLinguageKeyPressedAction(evt);
+            }
+        });
+        jScrollPane1.setViewportView(languageList);
+
+        org.openide.awt.Mnemonics.setLocalizedText(LinguagemLabel, "Idioma:");
+
+        org.openide.awt.Mnemonics.setLocalizedText(timeZoneLabel, "Time Zone:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,14 +145,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(debugModeCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(useChatCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(allSectionsCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(onlyFirefoxCheck))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(loginUrlLabel)
                             .addComponent(nameLabel)
@@ -135,24 +152,36 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                             .addComponent(urlLabel)
                             .addComponent(emailLabel)
                             .addComponent(cacheLabel)
-                            .addComponent(cacheLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cacheLabel1)
+                            .addComponent(LinguagemLabel)
+                            .addComponent(timeZoneLabel))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(logoPathField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                .addGap(10, 10, 10)
-                                .addComponent(findLogoButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                    .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                    .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                    .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                    .addComponent(cacheField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(cacheField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(logoPathField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, 280, Short.MAX_VALUE))
                                 .addGap(10, 10, 10)
-                                .addComponent(findButton)))))
-                .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(findLogoButton)
+                                    .addComponent(findButton)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(debugModeCheck)
+                        .addGap(4, 4, 4)
+                        .addComponent(useChatCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(allSectionsCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(onlyFirefoxCheck)
+                        .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,13 +216,21 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                     .addComponent(cacheLabel1)
                     .addComponent(logoPathField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findLogoButton))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(timeZoneLabel)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LinguagemLabel)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(debugModeCheck)
                     .addComponent(useChatCheck)
                     .addComponent(allSectionsCheck)
-                    .addComponent(onlyFirefoxCheck)
-                    .addComponent(debugModeCheck))
-                .addContainerGap(81, Short.MAX_VALUE))
+                    .addComponent(onlyFirefoxCheck))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -258,7 +295,47 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         }
     }//GEN-LAST:event_fileLogoButtonActionPerformed
 
+    private void listaLinguageKeyPressedAction(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listaLinguageKeyPressedAction
+         if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP || evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN || evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            //Model JList
+            ListModel model = languageList.getModel();
+
+            int numItems = model.getSize();
+            int posicao = languageList.getSelectedIndex();
+            String[] lista = new String[numItems];
+
+            for (int i = 0; i < numItems; i++) {
+                    lista[i] = (String) model.getElementAt(i);
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP || evt.getKeyCode() == KeyEvent.VK_UP) {
+                if (!(languageList.getSelectedIndex() == 0)) {
+                    String aux = lista[posicao - 1];
+                    lista[posicao - 1] = lista[posicao];
+                    lista[posicao] = aux;
+
+                    languageList.setListData(lista);
+                    languageList.setSelectedIndex(posicao - 1);
+                    evt.consume();
+                }
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN || evt.getKeyCode() == KeyEvent.VK_DOWN) {
+                if (!(languageList.getSelectedIndex() == numItems - 1)) {
+                    String aux = lista[posicao + 1];
+                    lista[posicao + 1] = lista[posicao];
+                    lista[posicao] = aux;
+
+                    languageList.setListData(lista);
+                    languageList.setSelectedIndex(posicao + 1);
+                    evt.consume();
+                }
+            }
+        }
+    }//GEN-LAST:event_listaLinguageKeyPressedAction
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LinguagemLabel;
     private javax.swing.JCheckBox allSectionsCheck;
     private javax.swing.JTextField cacheField;
     private javax.swing.JLabel cacheLabel;
@@ -270,12 +347,16 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private javax.swing.JLabel emailLabel;
     private javax.swing.JButton findButton;
     private javax.swing.JButton findLogoButton;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList languageList;
     private javax.swing.JTextField loginUrlField;
     private javax.swing.JLabel loginUrlLabel;
     private javax.swing.JTextField logoPathField;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JCheckBox onlyFirefoxCheck;
+    private javax.swing.JLabel timeZoneLabel;
     private javax.swing.JTextField urlField;
     private javax.swing.JLabel urlLabel;
     private javax.swing.JCheckBox useChatCheck;
@@ -322,6 +403,8 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         String useChat = "false";
         String allSections = "false";
         String onlyFirefox = "false";
+        String language = "";
+        String logoPath = logoPathField.getText().trim();
 
         if(debugModeCheck.isSelected()){
             debugMode = "true";
@@ -336,16 +419,29 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             onlyFirefox = "true";
         }
 
+        ListModel model = languageList.getModel();
+        int numItems = model.getSize();
+
+        for (int i = 0; i < numItems; i++) {
+            if(i == 0){
+                language = (String) model.getElementAt(i);
+            }else{
+               language = language + ", " + (String) model.getElementAt(i);
+            }
+        }
+
         d.putProperty("name", name);
         d.putProperty("desc", desc);
         d.putProperty("url", url);
         d.putProperty("email", email);
         d.putProperty("loginUrl", loginUrl);
-        d.putProperty("cachePath", new File(cachePath));
+        d.putProperty("cachePath", new File(cachePath) + File.separator);
         d.putProperty("debugMode", debugMode);
         d.putProperty("useChat", useChat);
         d.putProperty("allSections", allSections);
         d.putProperty("onlyFirefox", onlyFirefox);
+        d.putProperty("language", language);
+        d.putProperty("logoPath", logoPath);
     }
 
     void read(WizardDescriptor settings) {
