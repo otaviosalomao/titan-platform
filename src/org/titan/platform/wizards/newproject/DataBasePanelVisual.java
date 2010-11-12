@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
+import static org.titan.platform.utils.Utils.bundle;
 
 public class DataBasePanelVisual extends JPanel implements DocumentListener {
 
@@ -48,13 +49,13 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
 
         org.openide.awt.Mnemonics.setLocalizedText(HostLabel, "Host:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(nameLabel, "Name:");
+        org.openide.awt.Mnemonics.setLocalizedText(nameLabel, bundle(this.getClass(),"label.database.name"));
 
-        org.openide.awt.Mnemonics.setLocalizedText(userLabel, "User:");
+        org.openide.awt.Mnemonics.setLocalizedText(userLabel, bundle(this.getClass(),"label.database.user"));
 
-        org.openide.awt.Mnemonics.setLocalizedText(portLabel, "Port:");
+        org.openide.awt.Mnemonics.setLocalizedText(portLabel, bundle(this.getClass(),"label.database.port"));
 
-        org.openide.awt.Mnemonics.setLocalizedText(passwordLabel, "Password:");
+        org.openide.awt.Mnemonics.setLocalizedText(passwordLabel, bundle(this.getClass(),"label.database.password"));
 
         org.openide.awt.Mnemonics.setLocalizedText(schemaLabel, "Schema:");
 
