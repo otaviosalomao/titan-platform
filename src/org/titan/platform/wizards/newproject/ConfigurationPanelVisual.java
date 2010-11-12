@@ -472,9 +472,11 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             String result = String.format("%s%02d:%02d - %s", sinal, Math.abs(hour), minute, TimeZoneIds[i]);
 
             timeZoneComboBox.addItem(result);
-            
-            if(TimeZoneIds[i].equals(TimeZone.getDefault().getID())){
-                timeZoneComboBox.setSelectedIndex(i);
+
+            if(settings.getProperties().get("timezone") == null){
+                if(TimeZoneIds[i].equals(TimeZone.getDefault().getID())){
+                    timeZoneComboBox.setSelectedIndex(i);
+                }
             }
         }
     }

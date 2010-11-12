@@ -357,11 +357,11 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
         }
         this.projectLocationTextField.setText(projectLocation.getAbsolutePath());
 
-        String projectName = (String) settings.getProperty("name");
+        String projectName = (String) settings.getProperties().get("name");
         if (projectName == null) {
-            projectName = "TitanFramework";
+           this.projectNameTextField.setText("TitanFramework");
         }
-        this.projectNameTextField.setText(projectName);
+        
         this.projectNameTextField.selectAll();
     }
 
