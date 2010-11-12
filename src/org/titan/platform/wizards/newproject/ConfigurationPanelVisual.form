@@ -40,14 +40,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nameField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="descField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="urlField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="emailField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="loginUrlField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="cacheField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="logoPathField" alignment="0" pref="279" max="32767" attributes="2"/>
-                                  <Component id="jComboBox1" alignment="0" pref="279" max="32767" attributes="0"/>
+                                  <Component id="nameField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="descField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="urlField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="emailField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="loginUrlField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="cacheField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="logoPathField" alignment="0" pref="359" max="32767" attributes="2"/>
+                                  <Component id="jComboBox1" alignment="0" pref="359" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -177,6 +177,9 @@
     <Component class="javax.swing.JTextField" name="descField">
     </Component>
     <Component class="javax.swing.JTextField" name="urlField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="http://localhost:8080"/>
+      </Properties>
       <Events>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="urlFieldFocusLost"/>
       </Events>
@@ -189,6 +192,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="loginUrlField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="http://localhost:8080/titan.php?target=login"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="findButton">
       <Properties>
@@ -215,9 +221,6 @@
           <Connection code="bundle(this.getClass(), &quot;label.configuration.useChat&quot;)" type="code"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="useChatCheckActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="onlyFirefoxCheck">
       <Properties>
@@ -225,9 +228,6 @@
           <Connection code="bundle(this.getClass(), &quot;label.configuration.onlyFirefox&quot;)" type="code"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onlyFirefoxCheckActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="allSectionsCheck">
       <Properties>

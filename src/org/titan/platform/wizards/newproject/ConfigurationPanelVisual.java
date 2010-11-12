@@ -77,6 +77,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
 
         org.openide.awt.Mnemonics.setLocalizedText(cacheLabel, bundle(this.getClass(), "label.configuration.cachePath"));
 
+        urlField.setText("http://localhost:8080");
         urlField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 urlFieldFocusLost(evt);
@@ -84,6 +85,8 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         });
 
         cacheField.setText("cache/");
+
+        loginUrlField.setText("http://localhost:8080/titan.php?target=login");
 
         org.openide.awt.Mnemonics.setLocalizedText(findButton, bundle(this.getClass(), "browse.file"));
         findButton.setActionCommand("BROWSE");
@@ -97,18 +100,8 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         org.openide.awt.Mnemonics.setLocalizedText(debugModeCheck, bundle(this.getClass(), "label.configuration.debugMode"));
 
         org.openide.awt.Mnemonics.setLocalizedText(useChatCheck, bundle(this.getClass(), "label.configuration.useChat"));
-        useChatCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                useChatCheckActionPerformed(evt);
-            }
-        });
 
         org.openide.awt.Mnemonics.setLocalizedText(onlyFirefoxCheck, bundle(this.getClass(), "label.configuration.onlyFirefox"));
-        onlyFirefoxCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onlyFirefoxCheckActionPerformed(evt);
-            }
-        });
 
         allSectionsCheck.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(allSectionsCheck, bundle(this.getClass(), "label.configuration.allSections"));
@@ -163,14 +156,14 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(cacheField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(logoPathField, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, 279, Short.MAX_VALUE))
+                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(descField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(urlField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(cacheField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(logoPathField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, 359, Short.MAX_VALUE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(findLogoButton)
@@ -238,14 +231,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void useChatCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useChatCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_useChatCheckActionPerformed
-
-    private void onlyFirefoxCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onlyFirefoxCheckActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onlyFirefoxCheckActionPerformed
-
     private void browseCacheButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCacheButtonActionPerformed
         String command = evt.getActionCommand();
         if ("BROWSE".equals(command)) {
@@ -267,15 +252,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             panel.fireChangeEvent();
         }
     }//GEN-LAST:event_browseCacheButtonActionPerformed
-
-    private void urlFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_urlFieldFocusLost
-        if(urlField.getText().trim().length() > 0){
-            loginUrlField.setText(urlField.getText().trim()+"/titan.php?target=login");
-        }
-        else{
-               loginUrlField.setText("");
-        }
-    }//GEN-LAST:event_urlFieldFocusLost
 
     private void fileLogoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileLogoButtonActionPerformed
        String command = evt.getActionCommand();
@@ -348,6 +324,19 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             }
         }
     }//GEN-LAST:event_listaLinguageKeyPressedAction
+
+    private void urlFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_urlFieldFocusLost
+        completeUrlLogin();
+    }//GEN-LAST:event_urlFieldFocusLost
+
+    private void completeUrlLogin(){
+        if(urlField.getText().trim().length() > 0){
+            loginUrlField.setText(urlField.getText().trim()+"/titan.php?target=login");
+        }
+        else{
+               loginUrlField.setText("");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LinguagemLabel;
