@@ -6,6 +6,8 @@ package org.titan.platform.wizards.newproject;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Date;
+import java.util.TimeZone;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
@@ -61,7 +63,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         languageList = new javax.swing.JList();
         LinguagemLabel = new javax.swing.JLabel();
         timeZoneLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        timeZoneComboBox = new javax.swing.JComboBox();
 
         setPreferredSize(new java.awt.Dimension(551, 315));
 
@@ -132,7 +134,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
 
         org.openide.awt.Mnemonics.setLocalizedText(timeZoneLabel, "Time Zone:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        timeZoneComboBox.setModel(new javax.swing.DefaultComboBoxModel());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -163,7 +165,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                                     .addComponent(loginUrlField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                                     .addComponent(cacheField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                                     .addComponent(logoPathField, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, 359, Short.MAX_VALUE))
+                                    .addComponent(timeZoneComboBox, 0, 359, Short.MAX_VALUE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(findLogoButton)
@@ -216,7 +218,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(timeZoneLabel)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(timeZoneComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LinguagemLabel)
@@ -351,7 +353,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private javax.swing.JLabel emailLabel;
     private javax.swing.JButton findButton;
     private javax.swing.JButton findLogoButton;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList languageList;
     private javax.swing.JTextField loginUrlField;
@@ -360,6 +361,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JCheckBox onlyFirefoxCheck;
+    private javax.swing.JComboBox timeZoneComboBox;
     private javax.swing.JLabel timeZoneLabel;
     private javax.swing.JTextField urlField;
     private javax.swing.JLabel urlLabel;
@@ -410,6 +412,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         String language = "";
         String logoPath = logoPathField.getText().trim();
         String logoNameFile = logoPathField.getText().substring(logoPathField.getText().trim().lastIndexOf(File.separatorChar) + 1);
+        String timezone = (String) timeZoneComboBox.getSelectedItem();
 
         if(debugModeCheck.isSelected()){
             debugMode = "true";
@@ -448,9 +451,31 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         d.putProperty("language", language);
         d.putProperty("logoPath", logoPath);
         d.putProperty("logoNameFile", logoNameFile);
+        d.putProperty("timezone", timezone);
     }
 
     void read(WizardDescriptor settings) {
-        //
+  
+        String TimeZoneIds[] = TimeZone.getAvailableIDs();
+
+        for (int i = 0; i < TimeZoneIds.length; i++){
+            Date date = new Date();
+            TimeZone tz = TimeZone.getTimeZone(TimeZoneIds[i]);
+            String tzName = tz.getDisplayName(tz.inDaylightTime(date), TimeZone.LONG);
+
+            // Get the number of hours from GMT
+            int rawOffset = tz.getRawOffset();
+            int hour = rawOffset / (60*60*1000);
+            int minute = Math.abs(rawOffset / (60*1000)) % 60;
+
+            String sinal = hour > 0 ? "+" : hour == 0 ? "" : "-";
+            String result = String.format("%s%02d:%02d - %s", sinal, Math.abs(hour), minute, TimeZoneIds[i]);
+
+            timeZoneComboBox.addItem(result);
+            
+            if(TimeZoneIds[i].equals(TimeZone.getDefault().getID())){
+                timeZoneComboBox.setSelectedIndex(i);
+            }
+        }
     }
 }
