@@ -40,14 +40,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nameField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="descField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="urlField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="emailField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="loginUrlField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="cacheField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="logoPathField" alignment="0" pref="276" max="32767" attributes="2"/>
-                                  <Component id="jComboBox1" alignment="0" pref="276" max="32767" attributes="0"/>
+                                  <Component id="nameField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="descField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="urlField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="emailField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="loginUrlField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="cacheField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="logoPathField" alignment="0" pref="279" max="32767" attributes="2"/>
+                                  <Component id="jComboBox1" alignment="0" pref="279" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -138,12 +138,16 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="nameLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.name&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="descLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.description&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="urlLabel">
@@ -163,7 +167,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="cacheLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Caminho Cache:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.cachePath&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nameField">
@@ -186,7 +192,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="findButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Procurar..."/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;browse.file&quot;)" type="code"/>
+        </Property>
         <Property name="actionCommand" type="java.lang.String" value="BROWSE"/>
       </Properties>
       <Events>
@@ -196,12 +204,16 @@
     <Component class="javax.swing.JCheckBox" name="debugModeCheck">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="modo debug"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.debugMode&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="useChatCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="usar chat"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.useChat&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="useChatCheckActionPerformed"/>
@@ -209,7 +221,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="onlyFirefoxCheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="somente firefox"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.onlyFirefox&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onlyFirefoxCheckActionPerformed"/>
@@ -218,7 +232,9 @@
     <Component class="javax.swing.JCheckBox" name="allSectionsCheck">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="todas as sess&#xf5;es"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.allSections&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="cacheLabel1">
@@ -230,7 +246,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="findLogoButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Procurar..."/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;browse.file&quot;)" type="code"/>
+        </Property>
         <Property name="actionCommand" type="java.lang.String" value="BROWSE"/>
       </Properties>
       <Events>
@@ -258,7 +276,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="LinguagemLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Idioma:"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="bundle(this.getClass(), &quot;label.configuration.language&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="timeZoneLabel">
