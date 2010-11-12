@@ -412,7 +412,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         String language = "";
         String logoPath = logoPathField.getText().trim();
         String logoNameFile = logoPathField.getText().substring(logoPathField.getText().trim().lastIndexOf(File.separatorChar) + 1);
-        String timezone = (String) timeZoneComboBox.getSelectedItem();
+        String timezone = ((String) timeZoneComboBox.getSelectedItem()).substring(9);
 
         if(debugModeCheck.isSelected()){
             debugMode = "true";
@@ -468,7 +468,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             int hour = rawOffset / (60*60*1000);
             int minute = Math.abs(rawOffset / (60*1000)) % 60;
 
-            String sinal = hour > 0 ? "+" : hour == 0 ? "" : "-";
+            String sinal = hour > 0 ? "+" : hour == 0 ? " " : "-";
             String result = String.format("%s%02d:%02d - %s", sinal, Math.abs(hour), minute, TimeZoneIds[i]);
 
             timeZoneComboBox.addItem(result);
