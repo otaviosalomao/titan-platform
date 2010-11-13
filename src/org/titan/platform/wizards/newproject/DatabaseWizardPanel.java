@@ -5,12 +5,18 @@
 package org.titan.platform.wizards.newproject;
 
 import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
+import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
+import org.titan.platform.database.Database;
 import static org.titan.platform.utils.Utils.bundle;
 
 /**
@@ -27,11 +33,26 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
     public DatabaseWizardPanel() {
     }
 
+    public void importDatabase(String database,String user, String password) throws IOException {
+        try {
+
+
+            File sql = new File("src/resources/db.sql");
+
+            Statement st = Database.getConnection(user, password).createStatement();
+            st.executeUpdate("CREATE DATABASE "+database);
+            
+            Database.resetDatabase(user, password, sql);
+        } catch (SQLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }
+
     @Override
     public Component getComponent() {
         if (component == null) {
             component = new DataBasePanelVisual(this);
-             component.setName(bundle(this.getClass(), "step.three"));
+            component.setName(bundle(this.getClass(), "step.three"));
         }
         return component;
     }
@@ -41,7 +62,6 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
         //throw new UnsupportedOperationException("Not supported yet.");
         return null;
     }
-
 
     @Override
     public boolean isValid() {
@@ -67,7 +87,7 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
 
     @Override
     public void readSettings(Object settings) {
-       // throw new UnsupportedOperationException("Not supported yet.");
+        // throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
