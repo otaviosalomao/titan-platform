@@ -33,19 +33,14 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
     public DatabaseWizardPanel() {
     }
 
-    public void importDatabase(String database,String user, String password) throws IOException {
-        try {
+    public void importDatabase(String database,String user, String password) throws IOException, SQLException{
 
+        File sql = new File("src/resources/db.sql");
 
-            File sql = new File("src/resources/db.sql");
+        Statement st = Database.getConnection(user, password).createStatement();
+        st.executeUpdate("CREATE DATABASE "+database);
 
-            Statement st = Database.getConnection(user, password).createStatement();
-            st.executeUpdate("CREATE DATABASE "+database);
-            
-            Database.resetDatabase(user, password, sql);
-        } catch (SQLException ex) {
-            Exceptions.printStackTrace(ex);
-        }
+        Database.resetDatabase(user, password, sql);
     }
 
     @Override
