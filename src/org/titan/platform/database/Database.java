@@ -15,11 +15,12 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
+import org.openide.util.Exceptions;
 
 public class Database {
 
     private static final String DRIVER_NAME = "org.postgresql.Driver";
-    private static String URL = "jdbc:postgresql:postgres";
+    private static String URL = "jdbc:postgresql:";
 
     static {
         try {
@@ -31,11 +32,22 @@ public class Database {
     private static String INSTRUCTIONS = new String();
 
     public static Connection getConnection(String user, String password) throws SQLException {
-        return DriverManager.getConnection(URL, user, password);
+        return DriverManager.getConnection(URL+"postgres", user, password);
+    }
+
+    public static Connection getConnection(String database, String user, String password) throws SQLException {
+        try {
+            return DriverManager.getConnection(URL + database, user, password);
+        } catch (SQLException ex) {
+             Statement st = Database.getConnection(user, password).createStatement();
+             st.executeUpdate("CREATE DATABASE "+database);
+             return DriverManager.getConnection(URL + database, user, password);
+        }
     }
 
 
-    public static void resetDatabase(String user, String password, File sqlFile) throws SQLException, FileNotFoundException, IOException {
+
+    public static void resetDatabase(String user, String password, File sqlFile, Connection connection) throws SQLException, FileNotFoundException, IOException {
         String s = new String();
         StringBuilder sb = new StringBuilder();
 
@@ -50,8 +62,7 @@ public class Database {
 
         String[] inst = sb.toString().split(";");
 
-        Connection c = Database.getConnection(user, password);
-        Statement st = c.createStatement();
+        Statement st = connection.createStatement();
 
         for (int i = 0; i < inst.length; i++) {
             if (!inst[i].trim().equals("")) {

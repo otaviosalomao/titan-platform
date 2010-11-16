@@ -7,6 +7,7 @@ package org.titan.platform.wizards.newproject;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
@@ -39,10 +40,9 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
 
             File sql = new File("src/resources/db.sql");
 
-            Statement st = Database.getConnection(user, password).createStatement();
-            st.executeUpdate("CREATE DATABASE "+database);
-            
-            Database.resetDatabase(user, password, sql);
+           Connection connection = Database.getConnection(database, user, password);
+           Database.resetDatabase(user, password, sql, connection);
+           
         } catch (SQLException ex) {
             Exceptions.printStackTrace(ex);
         }
