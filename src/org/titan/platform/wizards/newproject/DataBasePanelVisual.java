@@ -12,6 +12,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
+import org.titan.platform.wizards.components.ImportProgressBar;
 import static org.titan.platform.utils.Utils.bundle;
 
 public class DataBasePanelVisual extends JPanel implements DocumentListener {
@@ -19,8 +20,7 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
     public static final String PROP_PROJECT_NAME = "projectName";
     private DatabaseWizardPanel panel;
 
-
-     public DataBasePanelVisual(DatabaseWizardPanel panel) {
+    public DataBasePanelVisual(DatabaseWizardPanel panel) {
         initComponents();
         this.panel = panel;
         // Register listener on the textFields to make the automatic updates
@@ -150,15 +150,37 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportButtonActionPerformed
-        try {
-            panel.importDatabase(nameField.getText(), userField.getText(), passwordField.getText());
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro ao Importar Banco" , JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_ImportButtonActionPerformed
 
+        importProgressBar = new ImportProgressBar();
+
+        Thread threadImport = new Thread(new Runnable(){
+            
+            public void run(){
+
+                try {
+                    panel.importDatabase(nameField.getText(), userField.getText(), passwordField.getText());
+                    importProgressBar.close();
+
+                }catch (IOException ex) {
+                    importProgressBar.close();
+                    Exceptions.printStackTrace(ex);
+
+                } catch (SQLException ex) {
+                    importProgressBar.close();
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro ao Importar Banco", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        threadImport.start();
+
+        importProgressBar.setModal(true);
+        importProgressBar.setVisible(true);
+
+
+
+    }//GEN-LAST:event_ImportButtonActionPerformed
+    ImportProgressBar importProgressBar = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel HostLabel;
     private javax.swing.JButton ImportButton;
@@ -198,7 +220,7 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
     public void changedUpdate(DocumentEvent de) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     void store(WizardDescriptor d) {
         String sgdb = sgdbField.getText().trim();
         String host = hostField.getText().trim();
@@ -215,7 +237,6 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
         d.putProperty("port", port);
         d.putProperty("password", password);
         d.putProperty("schema", schema);
-     
-    }
 
+    }
 }

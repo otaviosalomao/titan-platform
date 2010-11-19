@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-titan-platform-utils-ImportProgressBarAction.instance">
+                <attr name="displayName" bundlevalue="org.titan.platform.utils.Bundle#CTL_ImportProgressBarAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="ImportProgressBarAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-titan-platform-utils-ImportProgressBarAction.instance"/>
+            </file>
+        </folder>
+    </folder>
     <folder name="Templates">
         <folder name="Project">
             <folder name="Titan">
@@ -11,6 +26,16 @@
                     <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/resources/titan.ico"/>
                     <attr name="template" boolvalue="true"/>
                 </file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="ImportProgressBarTopComponent.settings" url="ImportProgressBarTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="output">
+                <file name="ImportProgressBarTopComponent.wstcref" url="ImportProgressBarTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>
