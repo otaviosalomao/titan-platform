@@ -4,18 +4,16 @@
  */
 package org.titan.platform.database;
 
-import java.io.BufferedReader;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
-import org.openide.util.Exceptions;
+import java.util.Scanner;
 
 public class Database {
 
@@ -37,18 +35,16 @@ public class Database {
 
 
 
-    public static void resetDatabase(String user, String password, File sqlFile, Connection connection) throws SQLException, FileNotFoundException, IOException {
+    public static void resetDatabase(String user, String password, InputStream stream, Connection connection) throws SQLException, FileNotFoundException, IOException {
         String s = new String();
         StringBuilder sb = new StringBuilder();
 
-        FileReader fr = new FileReader(sqlFile);
+       Scanner sc = new Scanner(stream);
 
-        BufferedReader br = new BufferedReader(fr);
-
-        while ((s = br.readLine()) != null) {
-            sb.append(s);
+        while (sc.hasNext()) {
+            sb.append(sc.nextLine());
         }
-        br.close();
+        sc.close();
 
         String[] inst = sb.toString().split(";");
 

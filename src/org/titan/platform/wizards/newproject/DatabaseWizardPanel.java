@@ -5,17 +5,18 @@
 package org.titan.platform.wizards.newproject;
 
 import java.awt.Component;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
-import org.openide.util.Exceptions;
+import org.openide.filesystems.FileUtil;
 import org.openide.util.HelpCtx;
 import org.titan.platform.database.Database;
 import static org.titan.platform.utils.Utils.bundle;
@@ -35,10 +36,11 @@ public class DatabaseWizardPanel implements WizardDescriptor.Panel,
     }
 
     public void importDatabase(String database,String user, String password) throws IOException, SQLException{
-        File sql = new File("src/resources/db.sql");
-
+        File sql = null; 
+        InputStream is = this.getClass().getResourceAsStream("db.sql");
+        
         Connection connection = Database.getConnection(database, user, password);
-        Database.resetDatabase(user, password, sql, connection);
+        Database.resetDatabase(user, password, is, connection);
     }
 
     @Override
