@@ -39,7 +39,7 @@ public class Database {
         String s = new String();
         StringBuilder sb = new StringBuilder();
 
-       Scanner sc = new Scanner(stream);
+       Scanner sc = new Scanner(stream, "ISO-8859-1");
 
         while (sc.hasNext()) {
             sb.append(sc.nextLine());

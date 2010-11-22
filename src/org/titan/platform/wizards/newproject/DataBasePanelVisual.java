@@ -163,9 +163,11 @@ public class DataBasePanelVisual extends JPanel implements DocumentListener {
 
                 }catch (IOException ex) {
                     importProgressBar.close();
+                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro ao Importar Banco", JOptionPane.ERROR_MESSAGE);
                 } catch (SQLException ex) {
                     importProgressBar.close();
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro ao Importar Banco", JOptionPane.ERROR_MESSAGE);
                 }
 
