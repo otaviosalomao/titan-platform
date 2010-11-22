@@ -31,18 +31,8 @@ public class Database {
     }
     private static String INSTRUCTIONS = new String();
 
-    public static Connection getConnection(String user, String password) throws SQLException {
-        return DriverManager.getConnection(URL+"postgres", user, password);
-    }
-
     public static Connection getConnection(String database, String user, String password) throws SQLException {
-        try {
-            return DriverManager.getConnection(URL + database, user, password);
-        } catch (SQLException ex) {
-             Statement st = Database.getConnection(user, password).createStatement();
-             st.executeUpdate("CREATE DATABASE "+database);
-             return DriverManager.getConnection(URL + database, user, password);
-        }
+         return DriverManager.getConnection(URL+database, user, password);
     }
 
 
