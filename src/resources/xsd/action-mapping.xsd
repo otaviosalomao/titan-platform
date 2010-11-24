@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:element name="directive">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="value" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="menu">
+        <xs:complexType>
+            <xs:attribute name="action" type="xs:string"/>
+            <xs:attribute name="function" type="xs:string"/>
+            <xs:attribute name="image" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="permission">
+         <xs:complexType>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+         </xs:complexType>
+    </xs:element>
+
+     <xs:element name="action">
+         <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="menu" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+            <xs:attribute name="default" type="xs:string"/>
+            <xs:attribute name="description" type="xs:string"/>
+            <xs:attribute name="index-to" type="xs:string"/>
+         </xs:complexType>
+
+     </xs:element>
+
+     <xs:element name="action-mapping">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="directive" minOccurs="0"/>
+                <xs:element ref="permission" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="action" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+     </xs:element>
+
+</xs:schema>
