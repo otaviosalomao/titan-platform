@@ -8,7 +8,9 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.Date;
 import java.util.TimeZone;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.event.DocumentEvent;
@@ -29,6 +31,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         initComponents();
         this.panel = panel;
         // Register listener on the textFields to make the automatic updates
+        logoPathField.getDocument().addDocumentListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -229,7 +232,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
                     .addComponent(useChatCheck)
                     .addComponent(allSectionsCheck)
                     .addComponent(onlyFirefoxCheck))
-                .addContainerGap())
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,8 +272,6 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
 	    //Add the preview pane.
             chooser.setAccessory(new ImagePreview(chooser));
 
-
-//            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
             chooser.setDialogTitle(bundle(this.getClass(), "browse.location.logo"));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             String path = this.logoPathField.getText();
@@ -374,6 +375,24 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         //same problem as in 31086, initial focus on Cancel button
     }
     boolean valid(WizardDescriptor wizardDescriptor) {
+
+
+        ImageIcon tmpIcon = new ImageIcon(logoPathField.getText());
+
+        if (tmpIcon != null) {
+            if (tmpIcon.getIconHeight() > 56) {
+                wizardDescriptor.putProperty("WizardPanel_errorMessage", bundle(this.getClass(), "invalid.logo.height"));
+                return false; // Display name not specified
+            }
+
+        }
+
+        if(logoPathField.getText().length() != 0 && !(new File(logoPathField.getText()).isFile())){
+            wizardDescriptor.putProperty("WizardPanel_errorMessage", bundle(this.getClass(), "invalid.logo.file"));
+            return false; // Display name not specified
+        }
+
+
 
         wizardDescriptor.putProperty("WizardPanel_errorMessage", "");
         return true;
