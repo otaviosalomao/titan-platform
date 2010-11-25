@@ -1,35 +1,42 @@
 package org.titan.platform.wizards.components;
 
+
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 public class ImportProgressBar extends JDialog{
 
-	private JLabel importandoBacoDeLabel;
+	private JLabel importManssageLabel;
 	private JProgressBar importProgressBar;
 
 	public ImportProgressBar() {
 		super();
 		inicializaInterface();
                 importProgressBar.setIndeterminate(true);
-		
+                
+               
+
 	}
 
 	public void inicializaInterface() {
 		setTitle("Aguarde...");
 		setFocusable(false);
 		getContentPane().setLayout(null);
-		setBounds(100, 100, 240, 77);
+		setBounds(100, 100, 250, 95);
 		setLocationRelativeTo(null);
 		this.setUndecorated(true);
 		this.setResizable(false);
-		importandoBacoDeLabel = new JLabel("Importando baco de dados...");
-		importandoBacoDeLabel.setBounds(10, 10, 217, 24);
-		getContentPane().add(importandoBacoDeLabel);
+		importManssageLabel = new JLabel("Importando baco de dados...");
+		importManssageLabel.setBounds(10, 10, 230, 24);
+		getContentPane().add(importManssageLabel);
+		
+		 JLabel waitLabel = new JLabel("Aguarde, isso pode levar alguns minutos...");
+         waitLabel.setBounds(10, 32, 230, 24);
+         getContentPane().add(waitLabel);
 
 		importProgressBar = new JProgressBar();
-		importProgressBar.setBounds(10, 40, 217, 14);
+		importProgressBar.setBounds(10, 67, 230, 14);
 		getContentPane().add(importProgressBar);
 
 	}
