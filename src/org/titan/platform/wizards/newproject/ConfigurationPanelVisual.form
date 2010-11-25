@@ -21,10 +21,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loginUrlLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -39,37 +48,32 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nameField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="descField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="urlField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="emailField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="loginUrlField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="cacheField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="logoPathField" alignment="0" pref="359" max="32767" attributes="2"/>
-                                  <Component id="timeZoneComboBox" alignment="0" pref="359" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="126" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="removeLanguageButton" max="32767" attributes="1"/>
+                                  <Component id="addLanguageButton" alignment="0" max="32767" attributes="1"/>
                               </Group>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="findLogoButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="findButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="126" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" min="-2" pref="126" max="-2" attributes="0"/>
+                          <Component id="nameField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="descField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="urlField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="emailField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="loginUrlField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="cacheField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="logoPathField" alignment="0" pref="363" max="32767" attributes="2"/>
+                          <Component id="timeZoneComboBox" alignment="0" pref="363" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="debugModeCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="useChatCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="allSectionsCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="onlyFirefoxCheck" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="findLogoButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="findButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,18 +123,26 @@
                   <Component id="timeZoneComboBox" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LinguagemLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="53" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="LinguagemLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="53" max="-2" attributes="0"/>
+                      <Group type="102" attributes="1">
+                          <Component id="addLanguageButton" min="-2" pref="19" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="removeLanguageButton" min="-2" pref="19" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jScrollPane2" min="-2" pref="53" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="debugModeCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="useChatCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -265,12 +277,12 @@
         <Component class="javax.swing.JList" name="languageList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.AbstractListModel() {&#xa;    String[] strings = { &quot;pt_BR&quot;, &quot;en_US&quot;, &quot;es_ES&quot;};&#xa;    public int getSize() { return strings.length; }&#xa;    public Object getElementAt(int i) { return strings[i]; }&#xa;}" type="code"/>
+              <Connection code="listModel" type="code"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="listaLinguageKeyPressedAction"/>
-          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="listModel = new DefaultListModel();&#xa;listModel.addElement(&quot;en_US&quot;);&#xa;listModel.addElement(&quot;es_ES&quot;);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -292,6 +304,44 @@
           <Connection code="new javax.swing.DefaultComboBoxModel()" type="code"/>
         </Property>
       </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="languageSelectedList">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="listModelSelected" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="listaLanguageKeyPressedAction"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="listModelSelected = new DefaultListModel();&#xa;listModelSelected.addElement(&quot;pt_BR&quot;);"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="addLanguageButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addLanguageButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="removeLanguageButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="-"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeLanguageButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
