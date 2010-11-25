@@ -57,14 +57,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="126" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="nameField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="descField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="urlField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="emailField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="loginUrlField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="cacheField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="logoPathField" alignment="0" pref="363" max="32767" attributes="2"/>
-                          <Component id="timeZoneComboBox" alignment="0" pref="363" max="32767" attributes="0"/>
+                          <Component id="nameField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="descField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="urlField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="emailField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="loginUrlField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="cacheField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="logoPathField" alignment="0" pref="352" max="32767" attributes="2"/>
+                          <Component id="timeZoneComboBox" alignment="0" pref="352" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -142,7 +142,7 @@
                   <Component id="allSectionsCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="onlyFirefoxCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

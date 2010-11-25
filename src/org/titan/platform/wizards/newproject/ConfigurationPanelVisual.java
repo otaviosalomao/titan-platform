@@ -380,6 +380,13 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
 
     private void removeLanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLanguageButtonActionPerformed
 
+        if (languageSelectedList.getSelectedIndex() >= 0 && languageSelectedList.getSelectedIndex() < listModelSelected.getSize()) {
+
+            listModel.addElement(listModelSelected.getElementAt(languageSelectedList.getLeadSelectionIndex()));
+
+            listModelSelected.remove(languageSelectedList.getSelectedIndex());
+         }
+
         panel.fireChangeEvent(); // Notify that the panel changed
     }//GEN-LAST:event_removeLanguageButtonActionPerformed
 
