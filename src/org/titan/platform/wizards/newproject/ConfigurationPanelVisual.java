@@ -326,35 +326,29 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
     private void listaLanguageKeyPressedAction(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listaLanguageKeyPressedAction
          if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP || evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN || evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
             //Model JList
-            ListModel model = languageSelectedList.getModel();
 
-            int numItems = model.getSize();
             int posicao = languageSelectedList.getSelectedIndex();
-            String[] lista = new String[numItems];
-
-            for (int i = 0; i < numItems; i++) {
-                    lista[i] = (String) model.getElementAt(i);
-            }
 
             if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP || evt.getKeyCode() == KeyEvent.VK_UP) {
                 if (!(languageSelectedList.getSelectedIndex() == 0)) {
-                    String aux = lista[posicao - 1];
-                    lista[posicao - 1] = lista[posicao];
-                    lista[posicao] = aux;
 
-                    languageSelectedList.setListData(lista);
+                    String aux = (String) listModelSelected.getElementAt(posicao-1);
+                    listModelSelected.setElementAt(listModelSelected.getElementAt(posicao), posicao -1);
+                    listModelSelected.setElementAt(aux, posicao);
+
                     languageSelectedList.setSelectedIndex(posicao - 1);
                     evt.consume();
                 }
             }
 
             if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN || evt.getKeyCode() == KeyEvent.VK_DOWN) {
-                if (!(languageSelectedList.getSelectedIndex() == numItems - 1)) {
-                    String aux = lista[posicao + 1];
-                    lista[posicao + 1] = lista[posicao];
-                    lista[posicao] = aux;
+                if (!(languageSelectedList.getSelectedIndex() == listModelSelected.getSize() - 1)) {
 
-                    languageSelectedList.setListData(lista);
+                    String aux = (String) listModelSelected.getElementAt(posicao+1);
+                    listModelSelected.setElementAt(listModelSelected.getElementAt(posicao), posicao +1);
+                    listModelSelected.setElementAt(aux, posicao);
+
+
                     languageSelectedList.setSelectedIndex(posicao + 1);
                     evt.consume();
                 }
@@ -370,7 +364,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
         
          if (languageList.getSelectedIndex() >= 0 && languageList.getSelectedIndex() < listModel.getSize()) {
 
-            listModelSelected.addElement(listModel.getElementAt(languageList.getLeadSelectionIndex()));
+            listModelSelected.addElement(listModel.getElementAt(languageList.getSelectedIndex()));
 
             listModel.remove(languageList.getSelectedIndex());
          }
@@ -382,7 +376,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
 
         if (languageSelectedList.getSelectedIndex() >= 0 && languageSelectedList.getSelectedIndex() < listModelSelected.getSize()) {
 
-            listModel.addElement(listModelSelected.getElementAt(languageSelectedList.getLeadSelectionIndex()));
+            listModel.addElement(listModelSelected.getElementAt(languageSelectedList.getSelectedIndex()));
 
             listModelSelected.remove(languageSelectedList.getSelectedIndex());
          }
