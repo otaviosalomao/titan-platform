@@ -23,20 +23,20 @@ public class ImportProgressBar extends JDialog{
 		setTitle("Aguarde...");
 		setFocusable(false);
 		getContentPane().setLayout(null);
-		setBounds(100, 100, 250, 95);
+		setBounds(100, 100, 278, 95);
 		setLocationRelativeTo(null);
 		this.setUndecorated(true);
 		this.setResizable(false);
 		importManssageLabel = new JLabel("Importando baco de dados...");
-		importManssageLabel.setBounds(10, 10, 230, 24);
+		importManssageLabel.setBounds(10, 10, 256, 24);
 		getContentPane().add(importManssageLabel);
 		
 		 JLabel waitLabel = new JLabel("Aguarde, isso pode levar alguns minutos...");
-         waitLabel.setBounds(10, 32, 230, 24);
+         waitLabel.setBounds(10, 32, 256, 24);
          getContentPane().add(waitLabel);
 
 		importProgressBar = new JProgressBar();
-		importProgressBar.setBounds(10, 67, 230, 14);
+		importProgressBar.setBounds(10, 67, 256, 14);
 		getContentPane().add(importProgressBar);
 
 	}
