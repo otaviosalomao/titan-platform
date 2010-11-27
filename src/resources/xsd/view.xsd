@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="field">
+         <xs:complexType>
+            <xs:attribute name="type" type="xs:string"/>
+            <xs:attribute name="column" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+         </xs:complexType>
+    </xs:element>
+
+    <xs:element name="icon">
+         <xs:complexType>
+            <xs:attribute name="action" type="xs:string"/>
+            <xs:attribute name="image" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+            <xs:attribute name="default" type="xs:string"/>
+         </xs:complexType>
+    </xs:element>
+
+      <xs:element name="view">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="field" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="icon" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="table" type="xs:string"/>
+            <xs:attribute name="primary" type="xs:string"/>
+            <xs:attribute name="paginate" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
