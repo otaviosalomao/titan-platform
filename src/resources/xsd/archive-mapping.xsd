@@ -18,7 +18,6 @@
             <xs:sequence>
                 <xs:element ref="mime-type" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
-            <xs:attribute name="table" type="xs:string"/>
         </xs:complexType>
      </xs:element>
 
