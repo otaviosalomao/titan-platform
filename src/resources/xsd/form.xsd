@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+     <xs:element name="mime-type" type="xs:string"/>
+
+    <xs:element name="item">
+         <xs:complexType>
+            <xs:attribute name="value" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+         </xs:complexType>
+    </xs:element>
+
+     <xs:element name="field">
+        <xs:complexType>
+             <xs:sequence>
+                <xs:element ref="mime-type" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="item" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="type" type="xs:string"/>
+            <xs:attribute name="column" type="xs:string"/>
+            <xs:attribute name="label" type="xs:string"/>
+            <xs:attribute name="required" type="xs:string"/>
+            <xs:attribute name="help" type="xs:string"/>
+            <xs:attribute name="unique" type="xs:string"/>
+            <xs:attribute name="owner-only" type="xs:string"/>
+            <xs:attribute name="first-year" type="xs:string"/>
+            <xs:attribute name="value" type="xs:string"/>
+            <xs:attribute name="city-id" type="xs:string"/>
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="read-only" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="group">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="field" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="label" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+     <xs:element name="go-to">
+        <xs:complexType>
+            <xs:attribute name="flag" type="xs:string"/>
+            <xs:attribute name="action" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="form">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="go-to" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="group" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="table" type="xs:string"/>
+            <xs:attribute name="primary" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
