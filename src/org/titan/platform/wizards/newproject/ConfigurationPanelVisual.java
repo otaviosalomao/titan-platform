@@ -448,10 +448,7 @@ public class ConfigurationPanelVisual extends JPanel implements DocumentListener
             return false; // Display name not specified
         }
 
-        ListModel model = languageSelectedList.getModel();
-        int numItemList = model.getSize();
-
-        if(!(numItemList >= 0)){
+        if(!(listModelSelected.getSize() > 0)){
             wizardDescriptor.putProperty("WizardPanel_errorMessage", bundle(this.getClass(), "invalid.language.selected"));
             return false; // Display name not specified
         }
