@@ -18,9 +18,9 @@ import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
-import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.Lookups;
 import org.openide.util.lookup.ProxyLookup;
+import org.titan.platform.wizards.section.SectionWizardAction;
 
 public class TitanPlatformLogicalView implements LogicalViewProvider {
 
@@ -69,12 +69,13 @@ public class TitanPlatformLogicalView implements LogicalViewProvider {
 
         @Override
         public Action[] getActions(boolean arg0) {
-            Action[] nodeActions = new Action[7];
+            Action[] nodeActions = new Action[8];
             nodeActions[0] = (Action) CommonProjectActions.newFileAction();
             nodeActions[1] = (Action) CommonProjectActions.copyProjectAction();
             nodeActions[2] = (Action) CommonProjectActions.deleteProjectAction();
             nodeActions[5] = (Action) CommonProjectActions.setAsMainProjectAction();
             nodeActions[6] = (Action) CommonProjectActions.closeProjectAction();
+            nodeActions[7] = new SectionWizardAction();
             return nodeActions;
         }
 
@@ -99,4 +100,5 @@ public class TitanPlatformLogicalView implements LogicalViewProvider {
         //leave unimplemented for now
         return null;
     }
+
 }
