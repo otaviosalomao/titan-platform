@@ -12,6 +12,7 @@ import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CallableSystemAction;
+import static org.titan.platform.utils.Utils.bundle;
 
 // An example action demonstrating how the wizard could be called from within
 // your code. You can copy-paste the code below wherever you need.
@@ -23,7 +24,7 @@ public final class SectionWizardAction extends CallableSystemAction {
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("Your wizard dialog title here");
+        wizardDescriptor.setTitle(bundle(this.getClass(), "wizard.section.title"));
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
@@ -69,7 +70,7 @@ public final class SectionWizardAction extends CallableSystemAction {
     }
 
     public String getName() {
-        return "Start Sample Wizard";
+        return bundle(this.getClass(), "wizard.section.name");
     }
 
     @Override
