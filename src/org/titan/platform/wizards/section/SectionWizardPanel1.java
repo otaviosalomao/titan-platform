@@ -8,6 +8,7 @@ import java.awt.Component;
 import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
+import org.titan.platform.parser.Parser;
 
 public class SectionWizardPanel1 implements WizardDescriptor.Panel {
 

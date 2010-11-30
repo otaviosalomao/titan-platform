@@ -5,6 +5,7 @@
 package org.titan.platform.wizards.section;
 
 import javax.swing.JPanel;
+import javax.swing.text.html.HTMLEditorKit.Parser;
 
 public final class SectionVisualPanel1 extends JPanel {
 

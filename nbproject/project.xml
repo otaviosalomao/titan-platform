@@ -127,6 +127,10 @@
             </module-dependencies>
             <public-packages/>
             <class-path-extension>
+                <runtime-relative-path>ext/package-parser.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/package-parser.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/postgresql-9.0-801.jdbc4.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/postgresql-9.0-801.jdbc4.jar</binary-origin>
             </class-path-extension>
@@ -137,6 +141,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/log4j-1.2.9.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/log4j-1.2.9.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/scala-library.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/scala-library.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/joda-time-1.6.2.jar</runtime-relative-path>

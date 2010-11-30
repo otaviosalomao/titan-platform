@@ -1,0 +1,2 @@
+Main-Class: org.titan.platform.parser.Parser
+Class-Path: scala-library.jar
