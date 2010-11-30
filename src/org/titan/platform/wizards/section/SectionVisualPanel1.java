@@ -5,7 +5,9 @@
 package org.titan.platform.wizards.section;
 
 import javax.swing.JPanel;
-import javax.swing.text.html.HTMLEditorKit.Parser;
+
+import static org.titan.platform.utils.Utils.bundle;
+
 
 public final class SectionVisualPanel1 extends JPanel {
 
@@ -16,7 +18,7 @@ public final class SectionVisualPanel1 extends JPanel {
 
     @Override
     public String getName() {
-        return "Step #1";
+        return bundle(this.getClass(), "step.one");
     }
 
     /** This method is called from within the constructor to
