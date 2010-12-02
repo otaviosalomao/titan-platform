@@ -52,7 +52,7 @@ public final class SectionWizardAction extends CallableSystemAction {
     private WizardDescriptor.Panel[] getPanels() {
         if (panels == null) {
             panels = new WizardDescriptor.Panel[]{
-                        new SectionWizardPanel1()
+                        new SectionWizardPanel1(project)
                     };
             String[] steps = new String[panels.length];
             for (int i = 0; i < panels.length; i++) {
