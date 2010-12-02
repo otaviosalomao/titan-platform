@@ -4,27 +4,39 @@
  */
 package org.titan.platform.wizards.section;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import org.netbeans.api.project.Project;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.titan.platform.parser.Parser;
+import org.titan.platform.utils.Utils;
 
 import static org.titan.platform.utils.Utils.bundle;
 
 public final class SectionVisualPanel1 extends JPanel {
 
+
+    private Project project;
+    private String repos;
+    private static String FS = File.separator;
+
     /** Creates new form SectionVisualPanel1 */
-    public SectionVisualPanel1() {
-        initComponents();
+    public SectionVisualPanel1(Project project) {
+        this.project = project;
+        try {
+            repos = Utils.getConfigAttr(project.getProjectDirectory(), "repos-path");
+        } catch (FileNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
+            //TODO COLOCAR MSG DE ERRO - RAFAEl
+        }
+         initComponents();
         loadComboBox();
+       
     }
 
     @Override
@@ -33,10 +45,10 @@ public final class SectionVisualPanel1 extends JPanel {
     }
 
     private void loadComboBox() {
-        org.titan.platform.parser.Package[] packages = Parser.parse("/var/www/repos/package/package.xml");
+        org.titan.platform.parser.Package[] packages = Parser.parse(repos+FS+"package"+FS+"package.xml");
 
         for (org.titan.platform.parser.Package p : packages) {
-            pacoteComboBox.addItem(p.label() + " - [" + p.name() + "]");
+            pacoteComboBox.addItem(p);
         }
     }
 
@@ -109,47 +121,43 @@ public final class SectionVisualPanel1 extends JPanel {
         if (pacoteComboBox.getSelectedIndex() > 0) {
 
             StringBuilder record = new StringBuilder();
-
-            String readmePath = "/var/www/repos/package/net.ledes.about/readme.txt";
-            String dbPath = "/var/www/repos/package/net.ledes.about/db.sq";
+            org.titan.platform.parser.Package pack = (org.titan.platform.parser.Package)pacoteComboBox.getSelectedItem();
+            String readmePath = repos+FS+"package"+FS+pack.name()+FS+"readme.txt";
+            String dbPath = repos+FS+"package"+FS+pack.name()+FS+"db.sql";
 
             //Readme.txt
-            {
-                FileInputStream readmefi = null;
-                try {
-                    readmefi = new FileInputStream(readmePath);
-                } catch (FileNotFoundException ex) {
-                    Exceptions.printStackTrace(ex);
-                }
+            FileInputStream readmefi = null;
+            try {
+                readmefi = new FileInputStream(readmePath);
+            } catch (FileNotFoundException ex) {
+               //do nothing nao achou
+            }
 
-                if (readmefi != null) {
-                    Scanner readmeSc = new Scanner(readmefi, "ISO-8859-1");
+            if (readmefi != null) {
+                Scanner readmeSc = new Scanner(readmefi, "ISO-8859-1");
 
-                    while (readmeSc.hasNext()) {
-                        record.append(readmeSc.nextLine());
-                        record.append("\n");
-                    }
+                while (readmeSc.hasNext()) {
+                    record.append(readmeSc.nextLine());
+                    record.append("\n");
                 }
             }
             //fim readme.txt
 
             //db.sql
-            {
-                FileInputStream dbfi = null;
-                try {
-                    dbfi = new FileInputStream(dbPath);
-                } catch (FileNotFoundException ex) {
-                    Exceptions.printStackTrace(ex);
-                }
+            FileInputStream dbfi = null;
+            try {
+                dbfi = new FileInputStream(dbPath);
+            } catch (FileNotFoundException ex) {
+               //não faz nada
+            }
 
-                if (dbfi != null) {
-                    Scanner dbSc = new Scanner(dbfi, "ISO-8859-1");
+            if (dbfi != null) {
+                Scanner dbSc = new Scanner(dbfi, "ISO-8859-1");
 
 
-                    while (dbSc.hasNext()) {
-                        record.append(dbSc.nextLine());
-                        record.append("\n");
-                    }
+                while (dbSc.hasNext()) {
+                    record.append(dbSc.nextLine());
+                    record.append("\n");
                 }
             }
             //fim db.sql

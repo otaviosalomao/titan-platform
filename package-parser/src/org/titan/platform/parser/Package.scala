@@ -10,5 +10,7 @@ class Package (node :Node){
 	
 	val properties = (node \\"property") map(new Property(_)) toArray
 	
-	
+	override def toString() = {
+		label+" - "+"["+name+"]"
+	}
 }

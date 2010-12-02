@@ -15,8 +15,9 @@ object Parser{
 	def main(args: Array[String]) {
       val packages = Parser.parse(args(0))
       
+      
       for(val p <- packages){
-      	Console.println(p.name+ " "+ p.label)
+      	Console.println(p)
       	 for(val pr <- p.properties){
       	 	Console.println("------"+pr.name+ " "+ pr.label+" "+pr.default+" "+pr.help)
       	 }

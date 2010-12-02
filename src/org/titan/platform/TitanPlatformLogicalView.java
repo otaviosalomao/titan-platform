@@ -75,7 +75,7 @@ public class TitanPlatformLogicalView implements LogicalViewProvider {
             nodeActions[2] = (Action) CommonProjectActions.deleteProjectAction();
             nodeActions[5] = (Action) CommonProjectActions.setAsMainProjectAction();
             nodeActions[6] = (Action) CommonProjectActions.closeProjectAction();
-            nodeActions[7] = new SectionWizardAction();
+            nodeActions[7] = new SectionWizardAction(this.project);
             return nodeActions;
         }
 

@@ -15,8 +15,8 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.filesystems.FileUtil;
 
-import org.titan.platform.TitanPlatformUtils;
 import org.titan.platform.utils.ResourceUtils;
+import org.titan.platform.utils.Utils;
 import static org.titan.platform.utils.Utils.bundle;
 
 public class LocationPanelVisual extends JPanel implements DocumentListener {
@@ -271,19 +271,19 @@ public class LocationPanelVisual extends JPanel implements DocumentListener {
             return false; // Display name not specified
         }
 
-        if (!TitanPlatformUtils.isDirectory(projectLocationTextField.getText())) {
+        if (!Utils.isDirectory(projectLocationTextField.getText())) {
             String message = bundle(this.getClass(),"invalid.project.directory");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
 
-        if (!TitanPlatformUtils.isDirectory(corePathField.getText()) || corePathField.getText().trim().length() == 0) {
+        if (!Utils.isDirectory(corePathField.getText()) || corePathField.getText().trim().length() == 0) {
             String message = bundle(this.getClass(),"invalid.core.location");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;
         }
 
-        if (!TitanPlatformUtils.isDirectory(reposPathField.getText()) || reposPathField.getText().trim().length() == 0) {
+        if (!Utils.isDirectory(reposPathField.getText()) || reposPathField.getText().trim().length() == 0) {
             String message = bundle(this.getClass(),"invalid.repos.location");
             wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
             return false;

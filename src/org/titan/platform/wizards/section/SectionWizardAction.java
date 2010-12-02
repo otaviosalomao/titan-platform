@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.text.MessageFormat;
 import javax.swing.JComponent;
+import org.netbeans.api.project.Project;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
@@ -20,7 +21,17 @@ public final class SectionWizardAction extends CallableSystemAction {
 
     private WizardDescriptor.Panel[] panels;
 
+    private Project project;
+
+    public SectionWizardAction(Project project) {
+        this.project = project;
+    }
+
+
+
+
     public void performAction() {
+
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
@@ -41,7 +52,7 @@ public final class SectionWizardAction extends CallableSystemAction {
     private WizardDescriptor.Panel[] getPanels() {
         if (panels == null) {
             panels = new WizardDescriptor.Panel[]{
-                        new SectionWizardPanel1()
+                        new SectionWizardPanel1(project)
                     };
             String[] steps = new String[panels.length];
             for (int i = 0; i < panels.length; i++) {
