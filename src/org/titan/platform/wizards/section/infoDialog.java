@@ -43,9 +43,15 @@ public class infoDialog extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         infoTextArea.setColumns(20);
         infoTextArea.setEditable(false);
+        infoTextArea.setLineWrap(true);
         infoTextArea.setRows(5);
+        infoTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(infoTextArea);
 
         jScrollPane2.setViewportView(jScrollPane1);
