@@ -9,18 +9,7 @@ object Parser{
 	def parse(path :String):Array[Package] = {
 	
 		val data = XML.loadFile(path);
-		val nodes = data.child \\"package"
-		var packages = new Array[Package](nodes.length)
-		var index = 0
-		for(val entry <- nodes) {
-			val name = (entry \\"package" \ "@name").text
-		 	val label = (entry \\"package" \ "@label").text
-		 	val component = (entry \\"package" \ "@component").text
-		 	packages(index) = new Package(name, label, component)
-		 	index = index+1
-  		}
-  		
-  		return packages
+  		return (data.child \\ "package") map(new Package(_)) toArray
 	}
 	
 	def main(args: Array[String]) {
@@ -28,6 +17,9 @@ object Parser{
       
       for(val p <- packages){
       	Console.println(p.name+ " "+ p.label)
+      	 for(val pr <- p.properties){
+      	 	Console.println("------"+pr.name+ " "+ pr.label+" "+pr.default+" "+pr.help)
+      	 }
       }	
     }
 

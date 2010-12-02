@@ -2,3 +2,5 @@ build
 target
 titan-template/cache
 *platform-private.properties
+*.class
+
