@@ -91,6 +91,9 @@
           <ResourceString bundle="org/titan/platform/wizards/section/Bundle.properties" key="SectionVisualPanel1.readmeButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="readmeButtonActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton(new ImageIcon(ImageUtilities.loadImage(&quot;resources/info.png&quot;)))"/>
       </AuxValues>
