@@ -13,10 +13,7 @@ object Parser{
 		var packages = new Array[Package](nodes.length)
 		var index = 0
 		for(val entry <- nodes) {
-			val name = (entry \\"package" \ "@name").text
-		 	val label = (entry \\"package" \ "@label").text
-		 	val component = (entry \\"package" \ "@component").text
-		 	packages(index) = new Package(name, label, component)
+		 	packages(index) = new Package(entry)
 		 	index = index+1
   		}
   		
@@ -28,6 +25,9 @@ object Parser{
       
       for(val p <- packages){
       	Console.println(p.name+ " "+ p.label)
+      	 for(val pr <- p.properties){
+      	 	Console.println("------"+pr.name+ " "+ pr.label+" "+pr.default+" "+pr.help)
+      	 }
       }	
     }
 
