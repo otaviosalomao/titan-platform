@@ -8,12 +8,7 @@ class Package (node :Node){
 	val label = (node \\"package" \ "@label").text
 	val component = (node \\"package" \ "@component").text
 	
-	val properties = new Array[Property]( (node \\"property").length )
+	val properties = (node \\"property") map(new Property(_)) toArray
 	
-	var index = 0
-	for(val entry <- node \\"property") {
-		 	properties(index) = new Property(entry)
-		 	index = index+1
-  	}
 	
 }

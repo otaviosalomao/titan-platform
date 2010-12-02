@@ -9,15 +9,7 @@ object Parser{
 	def parse(path :String):Array[Package] = {
 	
 		val data = XML.loadFile(path);
-		val nodes = data.child \\"package"
-		var packages = new Array[Package](nodes.length)
-		var index = 0
-		for(val entry <- nodes) {
-		 	packages(index) = new Package(entry)
-		 	index = index+1
-  		}
-  		
-  		return packages
+  		return (data.child \\ "package") map(new Package(_)) toArray
 	}
 	
 	def main(args: Array[String]) {
