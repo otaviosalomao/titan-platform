@@ -4,13 +4,20 @@
  */
 package org.titan.platform.wizards.section;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.titan.platform.parser.Parser;
 
 import static org.titan.platform.utils.Utils.bundle;
-
 
 public final class SectionVisualPanel1 extends JPanel {
 
@@ -25,7 +32,7 @@ public final class SectionVisualPanel1 extends JPanel {
         return bundle(this.getClass(), "step.one");
     }
 
-    private void loadComboBox(){
+    private void loadComboBox() {
         org.titan.platform.parser.Package[] packages = Parser.parse("/var/www/repos/package/package.xml");
 
         for (org.titan.platform.parser.Package p : packages) {
@@ -56,6 +63,11 @@ public final class SectionVisualPanel1 extends JPanel {
         pacoteComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Selecione um pacote --" }));
 
         org.openide.awt.Mnemonics.setLocalizedText(readmeButton, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.readmeButton.text")); // NOI18N
+        readmeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                readmeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,6 +103,63 @@ public final class SectionVisualPanel1 extends JPanel {
                 .addContainerGap(239, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void readmeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readmeButtonActionPerformed
+
+        if (pacoteComboBox.getSelectedIndex() > 0) {
+
+            StringBuilder record = new StringBuilder();
+
+            String readmePath = "/var/www/repos/package/net.ledes.about/readme.txt";
+            String dbPath = "/var/www/repos/package/net.ledes.about/db.sq";
+
+            //Readme.txt
+            {
+                FileInputStream readmefi = null;
+                try {
+                    readmefi = new FileInputStream(readmePath);
+                } catch (FileNotFoundException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+
+                if (readmefi != null) {
+                    Scanner readmeSc = new Scanner(readmefi, "ISO-8859-1");
+
+                    while (readmeSc.hasNext()) {
+                        record.append(readmeSc.nextLine());
+                        record.append("\n");
+                    }
+                }
+            }
+            //fim readme.txt
+
+            //db.sql
+            {
+                FileInputStream dbfi = null;
+                try {
+                    dbfi = new FileInputStream(dbPath);
+                } catch (FileNotFoundException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+
+                if (dbfi != null) {
+                    Scanner dbSc = new Scanner(dbfi, "ISO-8859-1");
+
+
+                    while (dbSc.hasNext()) {
+                        record.append(dbSc.nextLine());
+                        record.append("\n");
+                    }
+                }
+            }
+            //fim db.sql
+
+            infoDialog info = new infoDialog(record.toString());
+
+            info.setModal(true);
+            info.setVisible(true);
+        }
+    }//GEN-LAST:event_readmeButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
