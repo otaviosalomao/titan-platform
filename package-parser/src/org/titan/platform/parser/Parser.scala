@@ -2,26 +2,21 @@ package org.titan.platform.parser
 
 import scala.xml._
 
-object Parser{
+class Parser(path :String){
 	
-
+	val data = XML.loadFile(path);
 	
-	def parse(path :String):Array[Package] = {
-	
-		val data = XML.loadFile(path);
+	def parse():Array[Package] = {
   		return (data.child \\ "package") map(new Package(_)) toArray
 	}
 	
-	def main(args: Array[String]) {
-      val packages = Parser.parse(args(0))
-      
-      
-      for(val p <- packages){
-      	Console.println(p)
-      	 for(val pr <- p.properties){
-      	 	Console.println("------"+pr.name+ " "+ pr.label+" "+pr.defaultValue+" "+pr.help)
-      	 }
-      }	
-    }
+	def dependantNode(depends :String) :Package = {
+			Console.println(depends)
+			var dNodes =  data \\"package" filter(_\"@name" == depends)
+			if(dNodes.length > 0){
+				return new Package(dNodes(0))
+		}
+		return null
+	}
 
 }

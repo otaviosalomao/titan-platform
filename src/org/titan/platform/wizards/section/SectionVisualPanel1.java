@@ -17,6 +17,8 @@ import org.titan.platform.parser.Parser;
 import org.titan.platform.parser.Property;
 import org.titan.platform.utils.ResourceUtils;
 import org.titan.platform.utils.Utils;
+import scala.Function1;
+import scala.xml.Node;
 
 import static org.titan.platform.utils.Utils.bundle;
 
@@ -26,6 +28,7 @@ public final class SectionVisualPanel1 extends JPanel {
     private String repos;
     private static String FS = File.separator;
     PropertiesPanel pPanel = new PropertiesPanel();
+    private Parser parser;
 
     /** Creates new form SectionVisualPanel1 */
     public SectionVisualPanel1(Project project) {
@@ -34,6 +37,7 @@ public final class SectionVisualPanel1 extends JPanel {
 
             repos = Utils.getConfigAttr(project.getProjectDirectory(), "repos-path");
             repos = ResourceUtils.getAbsolutePath(project.getProjectDirectory().getPath(), repos);
+            parser = new Parser(repos + FS + "package" + FS + "package.xml");
             initComponents();
             loadComboBox();
             containerPanel.add(pPanel);
@@ -51,7 +55,8 @@ public final class SectionVisualPanel1 extends JPanel {
     }
 
     private void loadComboBox() {
-        org.titan.platform.parser.Package[] packages = Parser.parse(repos + FS + "package" + FS + "package.xml");
+
+        org.titan.platform.parser.Package[] packages = parser.parse();
 
         for (org.titan.platform.parser.Package p : packages) {
             pacoteComboBox.addItem(p);
@@ -173,17 +178,25 @@ public final class SectionVisualPanel1 extends JPanel {
         }
     }//GEN-LAST:event_readmeButtonActionPerformed
 
+    private void addFields(org.titan.platform.parser.Package pkg) {
+        pPanel.removeAll();
+        pPanel.addSeparator(pkg);
+
+        for (Property property : pkg.properties()) {
+            pPanel.addField(property);
+        }
+    }
+
     private void pacoteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacoteComboBoxActionPerformed
         if (pacoteComboBox.getSelectedIndex() > 0) {
-            pPanel.removeAll();
             org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
-            pPanel.addSeparator(pkg);
+            addFields(pkg);
 
-            for (Property property: pkg.properties()) {
-                pPanel.addField(property);
+            if(pkg.depends() != null && pkg.depends() != ""){
+                addFields(parser.dependantNode(pkg.depends()));
             }
         } else {
-             pPanel.removeAll();
+            pPanel.removeAll();
         }
 
         pPanel.updateUI();
