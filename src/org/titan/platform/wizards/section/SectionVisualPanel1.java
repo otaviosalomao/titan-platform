@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.netbeans.api.project.Project;
 import org.openide.util.Exceptions;
@@ -35,14 +36,13 @@ public final class SectionVisualPanel1 extends JPanel {
 
             repos = Utils.getConfigAttr(project.getProjectDirectory(), "repos-path");
             repos = ResourceUtils.getAbsolutePath(project.getProjectDirectory().getPath(), repos);
-        } catch (URISyntaxException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (FileNotFoundException ex) {
-            Exceptions.printStackTrace(ex);
-            //TODO COLOCAR MSG DE ERRO - RAFAEl
+            initComponents();
+            loadComboBox();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, bundle(this.getClass(), "invalid.repos.path"), "Erro", JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException();
         }
-         initComponents();
-        loadComboBox();
+       
        
     }
 
