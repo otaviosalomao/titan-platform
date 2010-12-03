@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import org.netbeans.api.project.Project;
 import org.openide.util.ImageUtilities;
 import org.titan.platform.parser.Parser;
+import org.titan.platform.parser.Property;
 import org.titan.platform.utils.ResourceUtils;
 import org.titan.platform.utils.Utils;
 
@@ -65,16 +66,10 @@ public final class SectionVisualPanel1 extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameLabel = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
         packageLabel = new javax.swing.JLabel();
         pacoteComboBox = new javax.swing.JComboBox();
         readmeButton = new javax.swing.JButton(new ImageIcon(ImageUtilities.loadImage("resources/info.png")));
         containerPanel = new javax.swing.JPanel();
-
-        org.openide.awt.Mnemonics.setLocalizedText(nameLabel, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.nameLabel.text")); // NOI18N
-
-        nameField.setText(org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.nameField.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(packageLabel, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.packageLabel.text")); // NOI18N
 
@@ -101,35 +96,26 @@ public final class SectionVisualPanel1 extends JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(containerPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel)
-                            .addComponent(packageLabel))
+                        .addComponent(packageLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(pacoteComboBox, 0, 297, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))))
+                        .addComponent(pacoteComboBox, 0, 297, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(packageLabel)
                         .addComponent(pacoteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -191,17 +177,19 @@ public final class SectionVisualPanel1 extends JPanel {
         if (pacoteComboBox.getSelectedIndex() > 0) {
             pPanel.removeAll();
             org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
+            pPanel.addSeparator(pkg);
 
-            for (int i = 0; i < pkg.properties().length; i++) {
-                pPanel.addField(pkg.properties()[i], i);
+            for (Property property: pkg.properties()) {
+                pPanel.addField(property);
             }
+        } else {
+             pPanel.removeAll();
         }
+
         pPanel.updateUI();
     }//GEN-LAST:event_pacoteComboBoxActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JTextField nameField;
-    private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel packageLabel;
     private javax.swing.JComboBox pacoteComboBox;
     private javax.swing.JButton readmeButton;

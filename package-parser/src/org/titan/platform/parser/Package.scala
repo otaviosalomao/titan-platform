@@ -9,7 +9,7 @@ class Package (node :Node){
 	val component = (node \\"package" \ "@component").text
 	val depends = (node \\"package" \ "@depends").text
 	
-	val properties = (node \\"property") map(new Property(_)) toArray
+	val properties = (node \\"property") map(new Property(_, this)) toArray
 	
 	override def toString() = {
 		label+" - "+"["+name+"]"
