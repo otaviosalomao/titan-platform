@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="boolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="lucene">
+        <xs:complexType>
+            <xs:attribute name="index-path" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="log">
+        <xs:complexType>
+            <xs:attribute name="db-path" type="xs:string"/>
+            <xs:attribute name="xml-path" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="version-control">
+        <xs:complexType>
+            <xs:attribute name="schema" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="mail">
+        <xs:complexType>
+            <xs:attribute name="xml-path" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="skin">
+        <xs:complexType>
+            <xs:attribute name="logo" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="business-layer">
+        <xs:complexType>
+            <xs:attribute name="xml-path" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="archive">
+        <xs:complexType>
+            <xs:attribute name="xml-path" type="xs:string"/>
+            <xs:attribute name="data-path" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="search">
+        <xs:complexType>
+            <xs:attribute name="hash" type="xs:string"/>
+            <xs:attribute name="timeout" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="security">
+        <xs:complexType>
+            <xs:attribute name="xml-path" type="xs:string"/>
+            <xs:attribute name="hash" type="xs:string"/>
+            <xs:attribute name="timeout" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="database">
+        <xs:complexType>
+            <xs:attribute name="sgbd" type="xs:string"/>
+            <xs:attribute name="host" type="xs:string"/>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="user" type="xs:string"/>
+            <xs:attribute name="port" type="xs:integer"/>
+            <xs:attribute name="password" type="xs:string"/>
+            <xs:attribute name="schema" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="titan-configuration">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="database" />
+                <xs:element ref="security"/>
+                <xs:element ref="search"/>
+                <xs:element ref="archive" />
+                <xs:element ref="business-layer"/>
+                <xs:element ref="skin"/>
+                <xs:element ref="mail" />
+                <xs:element ref="version-control"/>
+                <xs:element ref="log" />
+                <xs:element ref="lucene"/>
+            </xs:all>
+            
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="description" type="xs:string"/>
+            <xs:attribute name="url" type="xs:string"/>
+            <xs:attribute name="e-mail" type="xs:string"/>
+            <xs:attribute name="login-url" type="xs:string"/>
+            <xs:attribute name="core-path" type="xs:string"/>
+            <xs:attribute name="repos-path" type="xs:string"/>
+            <xs:attribute name="cache-path" type="xs:string"/>
+            <xs:attribute name="debug-mode" type="xs:string"/>
+            <xs:attribute name="session" type="xs:string"/>
+            <xs:attribute name="language" type="xs:string"/>
+            <xs:attribute name="timezone" type="xs:string"/>
+            <xs:attribute name="use-chat" type="boolean"/>
+            <xs:attribute name="all-sections" type="boolean"/>
+            <xs:attribute name="only-firefox" type="boolean"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
