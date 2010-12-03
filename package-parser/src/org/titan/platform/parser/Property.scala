@@ -5,7 +5,7 @@ import scala.xml.Node
 class Property(node : Node){
 
 	val name = (node \\"property" \ "@name").text
-	val default = (node \\"property" \ "@default").text
+	val defaultValue = (node \\"property" \ "@default").text
 	val label = (node \\"property" \ "@label").text
 	val help = (node \\"property" \ "@help").text
 }

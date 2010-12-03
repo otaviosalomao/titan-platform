@@ -59,6 +59,7 @@ public final class SectionVisualPanel1 extends JPanel {
         }
     }
 
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -72,7 +73,6 @@ public final class SectionVisualPanel1 extends JPanel {
         packageLabel = new javax.swing.JLabel();
         pacoteComboBox = new javax.swing.JComboBox();
         readmeButton = new javax.swing.JButton(new ImageIcon(ImageUtilities.loadImage("resources/info.png")));
-        propertiesPanel = new javax.swing.JPanel();
 
         org.openide.awt.Mnemonics.setLocalizedText(nameLabel, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.nameLabel.text")); // NOI18N
 
@@ -89,19 +89,6 @@ public final class SectionVisualPanel1 extends JPanel {
             }
         });
 
-        propertiesPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout propertiesPanelLayout = new javax.swing.GroupLayout(propertiesPanel);
-        propertiesPanel.setLayout(propertiesPanelLayout);
-        propertiesPanelLayout.setHorizontalGroup(
-            propertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
-        );
-        propertiesPanelLayout.setVerticalGroup(
-            propertiesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,7 +100,6 @@ public final class SectionVisualPanel1 extends JPanel {
                     .addComponent(packageLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(propertiesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(pacoteComboBox, 0, 297, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,9 +120,7 @@ public final class SectionVisualPanel1 extends JPanel {
                         .addComponent(packageLabel)
                         .addComponent(pacoteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(propertiesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(239, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,7 +181,6 @@ public final class SectionVisualPanel1 extends JPanel {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel packageLabel;
     private javax.swing.JComboBox pacoteComboBox;
-    private javax.swing.JPanel propertiesPanel;
     private javax.swing.JButton readmeButton;
     // End of variables declaration//GEN-END:variables
 }

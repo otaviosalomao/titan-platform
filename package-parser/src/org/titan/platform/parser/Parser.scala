@@ -19,7 +19,7 @@ object Parser{
       for(val p <- packages){
       	Console.println(p)
       	 for(val pr <- p.properties){
-      	 	Console.println("------"+pr.name+ " "+ pr.label+" "+pr.default+" "+pr.help)
+      	 	Console.println("------"+pr.name+ " "+ pr.label+" "+pr.defaultValue+" "+pr.help)
       	 }
       }	
     }
