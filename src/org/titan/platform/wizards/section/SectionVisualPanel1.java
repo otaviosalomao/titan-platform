@@ -17,8 +17,6 @@ import org.titan.platform.parser.Parser;
 import org.titan.platform.parser.Property;
 import org.titan.platform.utils.ResourceUtils;
 import org.titan.platform.utils.Utils;
-import scala.Function1;
-import scala.xml.Node;
 
 import static org.titan.platform.utils.Utils.bundle;
 
@@ -179,16 +177,16 @@ public final class SectionVisualPanel1 extends JPanel {
     }//GEN-LAST:event_readmeButtonActionPerformed
 
     private void addFields(org.titan.platform.parser.Package pkg) {
-        
+
         pPanel.addSeparator(pkg);
 
         for (Property property : pkg.properties()) {
             pPanel.addField(property);
         }
 
-         if(pkg.depends().length() > 0 ){
-                addFields(parser.dependantNode(pkg.depends()));
-            }
+        if (pkg.depends().length() > 0) {
+            addFields(parser.dependantNode(pkg.depends()));
+        }
     }
 
     private void pacoteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacoteComboBoxActionPerformed
