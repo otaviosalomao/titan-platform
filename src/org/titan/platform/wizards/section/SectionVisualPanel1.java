@@ -4,8 +4,6 @@
  */
 package org.titan.platform.wizards.section;
 
-import java.net.URISyntaxException;
-import org.openide.filesystems.FileUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,10 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.netbeans.api.project.Project;
-import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.titan.platform.parser.Parser;
-import org.titan.platform.parser.Property;
 import org.titan.platform.utils.ResourceUtils;
 import org.titan.platform.utils.Utils;
 
@@ -96,25 +92,27 @@ public final class SectionVisualPanel1 extends JPanel {
             }
         });
 
-        containerPanel.setLayout(new java.awt.GridLayout());
+        containerPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nameLabel)
-                    .addComponent(packageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(pacoteComboBox, 0, 297, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel)
+                            .addComponent(packageLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(pacoteComboBox, 0, 297, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -191,12 +189,14 @@ public final class SectionVisualPanel1 extends JPanel {
 
     private void pacoteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacoteComboBoxActionPerformed
         if (pacoteComboBox.getSelectedIndex() > 0) {
+            pPanel.removeAll();
             org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
 
             for (int i = 0; i < pkg.properties().length; i++) {
                 pPanel.addField(pkg.properties()[i], i);
             }
         }
+        pPanel.updateUI();
     }//GEN-LAST:event_pacoteComboBoxActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;

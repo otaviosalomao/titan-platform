@@ -28,7 +28,7 @@ public class PropertiesPanel extends JPanel {
 
     public void addField(Property property, int linha) {
 
-        JLabel label = new JLabel(property.label());
+        JLabel label = new JLabel(property.label()+":");
         GridBagConstraints labelConstraint = new GridBagConstraints();
         labelConstraint.insets = new Insets(0, 0, 5, 5);
         labelConstraint.anchor = GridBagConstraints.EAST;
@@ -40,11 +40,11 @@ public class PropertiesPanel extends JPanel {
         field.setText(property.defaultValue());
         GridBagConstraints fieldConstraint = new GridBagConstraints();
         fieldConstraint.insets = new Insets(0, 0, 5, 0);
-        fieldConstraint.anchor = GridBagConstraints.HORIZONTAL;
+        fieldConstraint.fill = GridBagConstraints.HORIZONTAL;
         fieldConstraint.gridx = 1;
         fieldConstraint.gridy = linha;
-
         fields.put(property.name(), field);
         add(field, fieldConstraint);
+        field.setColumns(10);
     }
 }
