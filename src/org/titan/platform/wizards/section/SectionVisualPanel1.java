@@ -17,6 +17,7 @@ import org.netbeans.api.project.Project;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.titan.platform.parser.Parser;
+import org.titan.platform.parser.Property;
 import org.titan.platform.utils.ResourceUtils;
 import org.titan.platform.utils.Utils;
 
@@ -24,10 +25,10 @@ import static org.titan.platform.utils.Utils.bundle;
 
 public final class SectionVisualPanel1 extends JPanel {
 
-
     private Project project;
     private String repos;
     private static String FS = File.separator;
+    PropertiesPanel pPanel = new PropertiesPanel();
 
     /** Creates new form SectionVisualPanel1 */
     public SectionVisualPanel1(Project project) {
@@ -38,12 +39,13 @@ public final class SectionVisualPanel1 extends JPanel {
             repos = ResourceUtils.getAbsolutePath(project.getProjectDirectory().getPath(), repos);
             initComponents();
             loadComboBox();
+            containerPanel.add(pPanel);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, bundle(this.getClass(), "invalid.repos.path"), "Erro", JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException();
         }
-       
-       
+
+
     }
 
     @Override
@@ -52,14 +54,13 @@ public final class SectionVisualPanel1 extends JPanel {
     }
 
     private void loadComboBox() {
-        org.titan.platform.parser.Package[] packages = Parser.parse(repos+FS+"package"+FS+"package.xml");
+        org.titan.platform.parser.Package[] packages = Parser.parse(repos + FS + "package" + FS + "package.xml");
 
         for (org.titan.platform.parser.Package p : packages) {
             pacoteComboBox.addItem(p);
         }
     }
 
-    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -73,6 +74,7 @@ public final class SectionVisualPanel1 extends JPanel {
         packageLabel = new javax.swing.JLabel();
         pacoteComboBox = new javax.swing.JComboBox();
         readmeButton = new javax.swing.JButton(new ImageIcon(ImageUtilities.loadImage("resources/info.png")));
+        containerPanel = new javax.swing.JPanel();
 
         org.openide.awt.Mnemonics.setLocalizedText(nameLabel, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.nameLabel.text")); // NOI18N
 
@@ -81,6 +83,11 @@ public final class SectionVisualPanel1 extends JPanel {
         org.openide.awt.Mnemonics.setLocalizedText(packageLabel, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.packageLabel.text")); // NOI18N
 
         pacoteComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Selecione um pacote --" }));
+        pacoteComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacoteComboBoxActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(readmeButton, org.openide.util.NbBundle.getMessage(SectionVisualPanel1.class, "SectionVisualPanel1.readmeButton.text")); // NOI18N
         readmeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +95,8 @@ public final class SectionVisualPanel1 extends JPanel {
                 readmeButtonActionPerformed(evt);
             }
         });
+
+        containerPanel.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,6 +109,7 @@ public final class SectionVisualPanel1 extends JPanel {
                     .addComponent(packageLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(pacoteComboBox, 0, 297, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,7 +130,9 @@ public final class SectionVisualPanel1 extends JPanel {
                         .addComponent(packageLabel)
                         .addComponent(pacoteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(readmeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -129,16 +141,16 @@ public final class SectionVisualPanel1 extends JPanel {
         if (pacoteComboBox.getSelectedIndex() > 0) {
 
             StringBuilder record = new StringBuilder();
-            org.titan.platform.parser.Package pack = (org.titan.platform.parser.Package)pacoteComboBox.getSelectedItem();
-            String readmePath = repos+FS+"package"+FS+pack.name()+FS+"readme.txt";
-            String dbPath = repos+FS+"package"+FS+pack.name()+FS+"db.sql";
+            org.titan.platform.parser.Package pack = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
+            String readmePath = repos + FS + "package" + FS + pack.name() + FS + "readme.txt";
+            String dbPath = repos + FS + "package" + FS + pack.name() + FS + "db.sql";
 
             //Readme.txt
             FileInputStream readmefi = null;
             try {
                 readmefi = new FileInputStream(readmePath);
             } catch (FileNotFoundException ex) {
-               //do nothing nao achou
+                //do nothing nao achou
             }
 
             if (readmefi != null) {
@@ -156,7 +168,7 @@ public final class SectionVisualPanel1 extends JPanel {
             try {
                 dbfi = new FileInputStream(dbPath);
             } catch (FileNotFoundException ex) {
-               //não faz nada
+                //não faz nada
             }
 
             if (dbfi != null) {
@@ -176,7 +188,18 @@ public final class SectionVisualPanel1 extends JPanel {
             info.setVisible(true);
         }
     }//GEN-LAST:event_readmeButtonActionPerformed
+
+    private void pacoteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacoteComboBoxActionPerformed
+        if (pacoteComboBox.getSelectedIndex() > 0) {
+            org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
+
+            for (int i = 0; i < pkg.properties().length; i++) {
+                pPanel.addField(pkg.properties()[i], i);
+            }
+        }
+    }//GEN-LAST:event_pacoteComboBoxActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel containerPanel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel packageLabel;
