@@ -179,7 +179,7 @@ public final class SectionVisualPanel1 extends JPanel {
     }//GEN-LAST:event_readmeButtonActionPerformed
 
     private void addFields(org.titan.platform.parser.Package pkg) {
-        pPanel.removeAll();
+        
         pPanel.addSeparator(pkg);
 
         for (Property property : pkg.properties()) {
@@ -189,6 +189,7 @@ public final class SectionVisualPanel1 extends JPanel {
 
     private void pacoteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacoteComboBoxActionPerformed
         if (pacoteComboBox.getSelectedIndex() > 0) {
+            pPanel.removeAll();
             org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
             addFields(pkg);
 
