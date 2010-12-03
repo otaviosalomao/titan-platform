@@ -1,10 +1,20 @@
 package org.titan.platform.utils;
+
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 
 public class ResourceUtils {
+
+    public static String getAbsolutePath(String pathToProject, String relativePath) throws URISyntaxException {
+        if (new File(relativePath).isAbsolute()) {
+            return relativePath;
+        }
+        return new URI(pathToProject + File.separator + relativePath).normalize().getPath();
+    }
 
     /**
      * Get the relative path from one file to another, specifying the directory separator. 
@@ -55,7 +65,7 @@ public class ResourceUtils {
             // These paths cannot be relativized.
             throw new PathResolutionException("No common path element found for '" + normalizedTargetPath + "' and '" + normalizedBasePath
                     + "'");
-        }   
+        }
 
         // The number of directories we have to backtrack depends on whether the base is a file or a dir
         // For example, the relative path from
@@ -91,12 +101,11 @@ public class ResourceUtils {
         return relative.toString();
     }
 
-
-    
     @SuppressWarnings("serial")
-	public static class PathResolutionException extends RuntimeException {
+    public static class PathResolutionException extends RuntimeException {
+
         PathResolutionException(String msg) {
             super(msg);
         }
-    }    
+    }
 }
