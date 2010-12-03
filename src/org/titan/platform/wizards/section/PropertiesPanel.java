@@ -30,7 +30,7 @@ public class PropertiesPanel extends JPanel {
     }
 
     public void addSeparator(org.titan.platform.parser.Package pkg) {
-        JLabel label = new JLabel(pkg.label() + ":");
+        JLabel label = new JLabel("<html><b>"+pkg.label() + ":</b></html>");
         GridBagConstraints labelConstraint = new GridBagConstraints();
         labelConstraint.insets = new Insets(0, 0, 5, 5);
         labelConstraint.anchor = GridBagConstraints.EAST;
