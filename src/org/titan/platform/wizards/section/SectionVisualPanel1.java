@@ -192,7 +192,7 @@ public final class SectionVisualPanel1 extends JPanel {
             org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
             addFields(pkg);
 
-            if(pkg.depends() != null && pkg.depends() != ""){
+            if(pkg.depends().length() > 0 ){
                 addFields(parser.dependantNode(pkg.depends()));
             }
         } else {
