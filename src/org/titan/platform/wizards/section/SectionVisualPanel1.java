@@ -185,6 +185,10 @@ public final class SectionVisualPanel1 extends JPanel {
         for (Property property : pkg.properties()) {
             pPanel.addField(property);
         }
+
+         if(pkg.depends().length() > 0 ){
+                addFields(parser.dependantNode(pkg.depends()));
+            }
     }
 
     private void pacoteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacoteComboBoxActionPerformed
@@ -193,9 +197,6 @@ public final class SectionVisualPanel1 extends JPanel {
             org.titan.platform.parser.Package pkg = (org.titan.platform.parser.Package) pacoteComboBox.getSelectedItem();
             addFields(pkg);
 
-            if(pkg.depends().length() > 0 ){
-                addFields(parser.dependantNode(pkg.depends()));
-            }
         } else {
             pPanel.removeAll();
         }
