@@ -5,7 +5,6 @@
 package org.titan.platform.wizards.section;
 
 import java.awt.Component;
-import java.awt.event.ActionListener;
 import javax.swing.event.ChangeListener;
 import org.netbeans.api.project.Project;
 import org.openide.WizardDescriptor;

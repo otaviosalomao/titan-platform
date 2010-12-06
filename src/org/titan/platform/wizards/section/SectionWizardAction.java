@@ -9,7 +9,6 @@ import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.MessageFormat;
-import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import org.netbeans.api.project.Project;
@@ -30,6 +29,7 @@ public final class SectionWizardAction extends CallableSystemAction {
         this.project = project;
     }
 
+    @Override
     public void performAction() {
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels());
         wizardDescriptor.setButtonListener(new SectionFinalizarAction(wizardDescriptor));
@@ -113,7 +113,7 @@ public final class SectionWizardAction extends CallableSystemAction {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (wiz.getValue().equals(WizardDescriptor.FINISH_OPTION)) {
-                JOptionPane.showMessageDialog(null, JOptionPane.INFORMATION_MESSAGE);
+               SectionWizardPanel panel =  (SectionWizardPanel) SectionWizardAction.this.panels[0];
             }
         }
     }
