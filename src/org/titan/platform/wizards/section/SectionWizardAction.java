@@ -6,8 +6,12 @@ package org.titan.platform.wizards.section;
 
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.MessageFormat;
+import javax.swing.Action;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import org.netbeans.api.project.Project;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
@@ -20,19 +24,15 @@ import static org.titan.platform.utils.Utils.bundle;
 public final class SectionWizardAction extends CallableSystemAction {
 
     private WizardDescriptor.Panel[] panels;
-
     private Project project;
 
     public SectionWizardAction(Project project) {
         this.project = project;
     }
 
-
-
-
     public void performAction() {
-
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels());
+        wizardDescriptor.setButtonListener(new SectionFinalizarAction(wizardDescriptor));
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
         wizardDescriptor.setTitle(bundle(this.getClass(), "wizard.section.title"));
@@ -43,6 +43,7 @@ public final class SectionWizardAction extends CallableSystemAction {
         if (!cancelled) {
             // do something
         }
+
     }
 
     /**
@@ -52,7 +53,7 @@ public final class SectionWizardAction extends CallableSystemAction {
     private WizardDescriptor.Panel[] getPanels() {
         if (panels == null) {
             panels = new WizardDescriptor.Panel[]{
-                        new SectionWizardPanel1(project)
+                        new SectionWizardPanel(project)
                     };
             String[] steps = new String[panels.length];
             for (int i = 0; i < panels.length; i++) {
@@ -96,5 +97,24 @@ public final class SectionWizardAction extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+
+    class SectionFinalizarAction implements ActionListener {
+
+        private WizardDescriptor wiz;
+
+        public SectionFinalizarAction(WizardDescriptor wiz) {
+              this.wiz = wiz;
+        }
+
+
+
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (wiz.getValue().equals(WizardDescriptor.FINISH_OPTION)) {
+                JOptionPane.showMessageDialog(null, JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 }
